@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordogenesis</title>
+<meta name="description" content="Ordogenism: a philosophy of responsibility for what life can become. By Ismael Ghalimi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#08090A;
+  --frame:#14171A;
+  --rule:#262B30;
+  --rule-soft:#1B1F23;
+  --label:#7E868E;
+  --type:#E6E9EB;
+  --soft:#C7CCD1;
+  --interface:#4FB4FF;
+  --interface-dim:rgba(79,180,255,.14);
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --gutter:clamp(24px,4.2vw,68px);
+  --maxw:1280px;
+}
+*{box-sizing:border-box}
+html{height:100%;scroll-snap-type:y proximity;scroll-behavior:smooth;background:var(--void);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-weight:400;color:var(--type);background:var(--void);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(circle at center,#2A3037 .5px,transparent .6px);background-size:25px 25px;opacity:.5;pointer-events:none;z-index:0}
+#progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--interface);z-index:30;transition:transform .15s linear}
+.fiducials{position:fixed;inset:0;pointer-events:none;z-index:2}.fiducials i{position:absolute;width:13px;height:13px;border:1px solid var(--rule);opacity:.85}.fiducials i:nth-child(1){top:26px;left:26px;border-right:0;border-bottom:0}.fiducials i:nth-child(2){top:26px;right:26px;border-left:0;border-bottom:0}.fiducials i:nth-child(3){bottom:26px;left:26px;border-right:0;border-top:0}.fiducials i:nth-child(4){bottom:26px;right:26px;border-left:0;border-top:0}
+#dots{position:fixed;right:calc(var(--gutter)/2.1);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:20;max-height:82vh}
+#dots button{width:6px;height:6px;padding:0;background:transparent;border:1px solid var(--rule);border-radius:0;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+#dots button:hover{border-color:var(--label)}#dots button[aria-current="true"]{background:var(--interface);border-color:var(--interface);transform:scale(1.45)}#dots button:focus-visible,a:focus-visible{outline:2px solid var(--interface);outline-offset:3px}
+.slide{position:relative;z-index:1;min-height:100dvh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:clamp(46px,6vh,74px) 0 clamp(42px,5.5vh,68px)}
+.inner{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px}.head .ix{font-family:var(--mono);font-size:.72rem;font-weight:500;color:var(--interface);letter-spacing:.04em}.head .nm{font-family:var(--mono);font-size:.72rem;color:var(--label);letter-spacing:.04em}.head .ln{flex:1;height:1px;background:var(--rule);transform:translateY(-3px)}
+h1,h2,h3{margin-top:0}h2{font-size:clamp(1.7rem,2.85vw,2.55rem);font-weight:500;letter-spacing:-.035em;line-height:1.08;margin:0 0 22px;max-width:none;white-space:nowrap}.prose{max-width:98ch}.prose p{font-size:clamp(.95rem,1.02vw,1.025rem);line-height:1.62;color:var(--soft);margin:0 0 1em}.prose strong{color:var(--type);font-weight:600}.prose em{color:#D7DBDE}.prose a{color:var(--interface);text-decoration:none;border-bottom:1px solid var(--interface-dim)}.prose a:hover{border-bottom-color:var(--interface)}
+.prose blockquote{margin:22px 0;padding:3px 0 3px 20px;border-left:2px solid var(--interface);font-size:clamp(1rem,1.25vw,1.14rem);letter-spacing:-.012em}.prose blockquote p{font-size:inherit;color:var(--type);line-height:1.45;margin:0}
+.prose .listening{margin:19px 0 0;padding-top:10px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.75rem;line-height:1.45;color:var(--label);letter-spacing:.015em}.prose .listening strong{font-weight:500;color:var(--interface)}.prose .listening .spotify-link{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--interface-dim);transition:color .2s,border-color .2s}.prose .listening .spotify-link:hover{color:var(--interface);border-bottom-color:var(--interface)}
+.footnotes{margin-top:27px;padding-top:13px;border-top:1px solid var(--rule);max-width:100%}.footnotes::before{content:"notes";display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:#5B6268;margin-bottom:10px}.footnotes ol{margin:0;padding-left:1.55rem;columns:2;column-gap:clamp(34px,4vw,62px);column-rule:1px solid var(--rule-soft)}.footnotes li{break-inside:avoid;padding:0 0 7px .25rem;color:var(--label)}.footnotes li p{font-size:.74rem;line-height:1.45;color:var(--label);margin:0}.footnotes li::marker{font-family:var(--mono);font-size:.66rem;color:var(--interface)}.footnote-ref a{border:0;font-family:var(--mono);font-size:.68em}.footnote{border:0!important;margin-left:4px;color:#5B6268!important}
+.title-slide{min-height:100dvh}.wordmark{font-family:var(--mono);font-size:.82rem;font-weight:500;letter-spacing:.32em;color:var(--label);margin-bottom:31px}.tagline{font-size:clamp(2.8rem,7.4vw,6rem);font-weight:500;letter-spacing:-.055em;line-height:.92;margin:0 0 26px;color:var(--type);white-space:nowrap}.tagline b{font-weight:500;color:var(--interface)}.title-sub{font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.55;color:var(--soft);max-width:none;width:100%;margin:0 0 30px}.definition-grid{border-top:1px solid var(--rule);margin-top:6px;width:100%}.definition-row{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:26px;padding:12px 0;border-bottom:1px solid var(--rule-soft)}.definition-row span{font-family:var(--mono);font-size:.75rem;color:var(--interface);letter-spacing:.02em}.definition-row p{margin:0;font-size:.88rem;line-height:1.55;color:var(--label);max-width:none}.title-meta{border-top:1px solid var(--rule);padding-top:16px;margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;font-size:.82rem;color:var(--label);width:100%}.title-meta div span{display:block;font-family:var(--mono);font-size:.66rem;color:#5B6268;letter-spacing:.04em;margin-bottom:5px}.front-note{margin:20px 0 0;max-width:none;width:100%;font-size:.78rem;line-height:1.55;color:#5B6268}.scroll-hint{margin-top:28px;font-family:var(--mono);font-size:.68rem;color:#4E555B;letter-spacing:.06em}.close-slide .title-sub{margin-bottom:30px}.close-slide .front-note{font-size:.88rem;color:var(--soft)}@media(min-width:901px){.title-slide .title-sub,.title-slide .front-note{white-space:nowrap}}
+/* Compact desktop rhythm: preserve type size while fitting each essay more comfortably within one viewport. */
+@media(min-width:901px){
+  body{line-height:1.5}
+  .slide{padding:clamp(30px,4.2vh,52px) 0 clamp(28px,3.9vh,48px)}
+  .head{margin-bottom:18px}
+  h2{line-height:1.04;margin-bottom:16px}
+  .prose p{line-height:1.47;margin-bottom:.72em}
+  .prose blockquote{margin:15px 0;padding-top:1px;padding-bottom:1px}
+  .prose blockquote p{line-height:1.34;margin:0}
+  .prose .listening{margin-top:13px;padding-top:8px;line-height:1.32}
+  .footnotes{margin-top:18px;padding-top:10px}
+  .footnotes::before{margin-bottom:7px}
+  .footnotes li{padding-bottom:5px}
+  .footnotes li p{line-height:1.31}
+  .title-slide .wordmark{margin-bottom:24px}
+  .title-slide .tagline{margin-bottom:20px}
+  .title-slide .title-sub{line-height:1.42;margin-bottom:22px}
+  .definition-row{padding:9px 0}
+  .definition-row p{line-height:1.38}
+  .title-meta{padding-top:12px;margin-top:20px}
+  .front-note{margin-top:15px;line-height:1.4}
+  .scroll-hint{margin-top:20px}
+}
+@media(max-width:900px){#dots{display:none}.slide{min-height:auto;padding:64px 0;scroll-snap-align:none}.fiducials i{width:10px;height:10px}.definition-row{grid-template-columns:1fr;gap:6px}.title-meta{grid-template-columns:1fr;gap:14px}.tagline,h2{white-space:normal}.footnotes ol{columns:1;column-rule:0}.prose{max-width:none}html{scroll-snap-type:none}}
+@media(max-height:620px){html{scroll-snap-type:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.01ms!important}}
+@media print{html{scroll-snap-type:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}body::before,#dots,#progress,.fiducials,.scroll-hint{display:none}.slide{min-height:auto;display:block;page-break-before:always;padding:28px 0}#title{page-break-before:auto}.close-slide{page-break-before:always}.inner{max-width:none;padding:0 34px}.prose{max-width:none}.prose p{color:#C7CCD1}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="fiducials" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<nav id="dots" aria-label="Essays"></nav>
+<main>
+
+<section class="slide title-slide" id="title" data-name="title">
+  <div class="inner title-inner">
+    <div class="wordmark">ORDOGENESIS</div>
+    <h1 class="tagline">life is <b>unfinished</b>.</h1>
+    <p class="title-sub">A philosophy of responsibility for what life can become.</p>
+    <div class="definition-grid">
+      <div class="definition-row"><span>Ordogenesis</span><p>the formation and renewal of organization that enables persistence, adaptation, and new possibilities.</p></div>
+      <div class="definition-row"><span>Ordogenism</span><p>the commitment to help life flourish, knowledge grow, and worthwhile futures remain open.</p></div>
+      <div class="definition-row"><span>Ordogenist</span><p>a person who participates in that work with care, intellectual honesty, and responsibility.</p></div>
+    </div>
+    <div class="title-meta">
+      <div><span>essay</span>On Life</div>
+      <div><span>author</span>Ismael Ghalimi</div>
+      <div><span>structure</span>31 self-contained essays</div>
+    </div>
+    <p class="front-note">Each essay can be read independently. Its notes distinguish scientific evidence, theoretical proposals, and philosophical arguments. Musical works are listening companions.</p>
+    <div class="scroll-hint">scroll, or press ↓</div>
+  </div>
+</section>
+
+
+<section class="slide essay" id="definition" data-name="definition">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">01</span><span class="nm">definition</span><span class="ln"></span></div>
+    <h2>Life makes continuation possible.</h2>
+    <article class="prose">
+      <p>Ordogenism is a philosophy of responsible participation in life’s capacity to continue, learn, and create. Ordogenesis names the formation and renewal of the organization that makes such capacities possible. An Ordogenist accepts responsibility for helping them flourish.</p>
+<p>Life is familiar in its examples and difficult at its boundaries. Organisms maintain themselves through exchanges with their surroundings; living lineages reproduce with variation and evolve. No short definition settles every case. A sterile animal remains alive. A virus depends on a host. A seed can be dormant. Whether a proposed definition handles these cases depends partly on what we need it to explain.<sup class="footnote-ref" id="definition-fnref-1"><a href="#definition-fn-1">1</a></sup></p>
+<p>Ordogenesis is therefore offered as a philosophical lens, not a replacement for biology. It draws attention to the processes through which matter acquires, maintains, and transforms organized capacities: a cell repairs a membrane, an ecosystem renews its relationships, a community preserves a method of inquiry. These processes differ enormously. Their resemblance does not make a library an organism or an ecosystem a single mind.</p>
+<p>The important feature is generativity: the ability to sustain activity and make further activity possible. This includes continuity as well as invention. A forest does not need to become technologically advanced to matter. Care does not need to produce a discovery to be worthwhile. Keeping something precious alive can be as consequential as creating something new.</p>
+<p>Nothing in this description establishes what anyone ought to value. Ordogenism adds an explicit ethical commitment: lives capable of going well matter; knowledge and agency help beings shape their conditions; the possibilities available to future beings deserve our care. Those commitments can be argued for and challenged. They are not deductions from a law of physics.<sup class="footnote-ref" id="definition-fnref-2"><a href="#definition-fn-2">2</a></sup></p>
+<p>An Ordogenist need not believe that the universe has a plan. The invitation is to take part in an unfinished world with intelligence, generosity, and a willingness to revise one’s work.</p>
+<blockquote>
+<p>We can take responsibility for life’s future without claiming to know the universe’s purpose.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/61CTXQ09mPLPmzdgEdeStO" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Goldberg Variations, BWV 988: Aria — Johann Sebastian Bach; Glenn Gould</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="definition-fn-1"><p>Cleland, C. E., &amp; Chyba, C. F. (2002). <a href="https://doi.org/10.1023/A:1020503324273" target="_blank" rel="noopener noreferrer">Defining “Life”</a>. <em>Origins of Life and Evolution of the Biosphere 32, 387–393</em>. Examines definitional limits and counterexamples; no consensus definition is assumed here.<a href="#definition-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="definition-fn-2"><p>Hume, D. (1739–1740). <a href="https://davidhume.org/texts/t/3/1/1" target="_blank" rel="noopener noreferrer">A Treatise of Human Nature</a>. <em>Book III, part I, section I, paragraph 27</em>. A philosophical source for making the step from description to obligation explicit.<a href="#definition-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="substrate" data-name="substrate">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">02</span><span class="nm">substrate</span><span class="ln"></span></div>
+    <h2>Life may have more than one material future.</h2>
+    <article class="prose">
+      <p>Ordogenism treats the material basis of future life as an open scientific question. Biological life is the demonstrated case; synthetic life is a possibility that requires evidence.</p>
+<p>Every organism we know belongs to the history of terrestrial biochemistry. That is a fact about our evidence, not proof that carbon chemistry is the only possible basis of life. Research in artificial life asks which features of living systems depend on their materials and which might be realized in other forms.<sup class="footnote-ref" id="substrate-fnref-1"><a href="#substrate-fn-1">1</a></sup></p>
+<p>A self-reproducing machine is a serious theoretical idea. Von Neumann showed how a system could contain a construction mechanism and a description used both to build an offspring and to provide that offspring with its own description. The achievement concerns logical organization. It does not establish that a practical, autonomous factory can reproduce itself from unprocessed extraterrestrial resources.<sup class="footnote-ref" id="substrate-fnref-2"><a href="#substrate-fn-2">2</a></sup></p>
+<p>I use <em>synthetic life</em> for engineered systems that would warrant consideration as living through a sufficiently rich combination of self-maintenance, reproduction, and evolutionary capacity. The term does not imply silicon, consciousness, or a single species. Some synthetic life may remain biochemical. Some may combine biological and manufactured components. For the industrial systems proposed here, <em>machine ecology</em> is the more cautious working term.</p>
+<p>Calling a machine intelligent, autonomous, or self-copying does not by itself establish that it is alive. A program can copy itself while depending on an entire human industry to supply its hardware and electricity. Conversely, dependence alone cannot disqualify a system: biological organisms also depend on environments and other organisms. The relevant question is which dependencies exist, and whether the system can sustain its organization through them.</p>
+<p>Substrate openness is an obligation to examine unfamiliar possibilities fairly. It gives us no basis for declaring organic beings obsolete. The arrival of another form of life could enlarge the living world without diminishing the value of the lives already in it.</p>
+<blockquote>
+<p>A different substrate could extend life’s possibilities. It would not establish a hierarchy of worth.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/2Pbc3TU73SStPh45uIPScj" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Oxygène, Pt. 4 — Jean-Michel Jarre</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="substrate-fn-1"><p>Langton, C. G. (1986). <a href="https://doi.org/10.1016/0167-2789(86" target="_blank" rel="noopener noreferrer">Studying artificial life with cellular automata</a>90237-X). <em>Physica D 22, 120–149</em>. Artificial organization studied in a computational model, not an autonomous physical factory.<a href="#substrate-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="substrate-fn-2"><p>von Neumann, J. (1966). <a href="https://dl.acm.org/doi/10.5555/1102024" target="_blank" rel="noopener noreferrer">Theory of Self-Reproducing Automata</a>. <em>A. W. Burks, ed. University of Illinois Press</em>. A formal construction under specified assumptions.<a href="#substrate-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="order" data-name="order">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">03</span><span class="nm">order</span><span class="ln"></span></div>
+    <h2>Organization is not the same as goodness.</h2>
+    <article class="prose">
+      <p>Ordogenesis concerns the organization that enables persistence, adaptation, and creation. Ordogenism evaluates what that organization makes possible, whom it serves, and what it costs.</p>
+<p>Thermodynamic entropy is a precisely defined physical quantity. “Order,” in ordinary speech, is a family of ideas. Treating the two as simple opposites confuses a useful image with a universal measure. Living systems maintain organized activity by exchanging energy and matter with their surroundings; their existence is compatible with the second law of thermodynamics.<sup class="footnote-ref" id="order-fnref-1"><a href="#order-fn-1">1</a></sup><sup class="footnote-ref" id="order-fnref-2"><a href="#order-fn-2">2</a></sup></p>
+<p>Information is another distinct concept. Shannon’s theory measures uncertainty within a specified communication model. It does not, by itself, measure truth, understanding, beauty, or the value of a life. A random string can be difficult to compress while explaining nothing. A short scientific principle can be extraordinarily useful.<sup class="footnote-ref" id="order-fnref-3"><a href="#order-fn-3">3</a></sup></p>
+<p>Computational efficiency matters for engineering, but it cannot repair this conceptual gap. Operations per second divided by watts is operations per joule: the number of specified computational operations completed per joule. It is not a measure of how wisely that work is used. Hardware speed, logical inference, adaptive competence, and ethical worth are different things.<sup class="footnote-ref" id="order-fnref-4"><a href="#order-fn-4">4</a></sup></p>
+<p>Nor is greater organization invariably desirable. A tumor is organized. So is a surveillance apparatus. A brittle institution may impose uniformity while destroying the diversity that would let it adapt. Ordogenism must ask about consequences rather than praise structure simply because it exists.</p>
+<p>The relevant ideal is <em>generative organization</em>: arrangements that support worthwhile lives, reliable knowledge, meaningful agency, and the ability to meet an uncertain future. It is a practical and ethical description, not a newly discovered physical variable. No single number can settle every trade-off among these goods. Choosing among them requires reasons that the people affected can examine.</p>
+<blockquote>
+<p>More structure, more computation, and more life are not interchangeable achievements.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/search/Galaxies%20Like%20Grains%20of%20Sand%20Hampshire%20%26%20Foat" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Galaxies Like Grains of Sand — Hampshire &amp; Foat</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="order-fn-1"><p>Schrödinger, E. (1944). <a href="https://doi.org/10.1017/CBO9781139644129" target="_blank" rel="noopener noreferrer">What Is Life? The Physical Aspect of the Living Cell</a>. <em>Cambridge University Press, chapter 6; linked later collected edition</em>. A historical foundation for the physical study of living organization.<a href="#order-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="order-fn-2"><p>Prigogine, I. (1977). <a href="https://www.nobelprize.org/uploads/2018/06/prigogine-lecture.pdf" target="_blank" rel="noopener noreferrer">Time, Structure and Fluctuations</a>. <em>Nobel Lecture, 8 December</em>. Nonequilibrium organization remains compatible with thermodynamics.<a href="#order-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="order-fn-3"><p>Shannon, C. E. (1948). <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x" target="_blank" rel="noopener noreferrer">A Mathematical Theory of Communication</a>. <em>Bell System Technical Journal 27, 379–423, 623–656</em>. The linked first part defines a mathematical communication problem, not a measure of value.<a href="#order-fnref-3" class="footnote">&#8617;</a></p></li>
+<li id="order-fn-4"><p>Landauer, R. (1961). <a href="https://doi.org/10.1147/rd.53.0183" target="_blank" rel="noopener noreferrer">Irreversibility and Heat Generation in the Computing Process</a>. <em>IBM Journal of Research and Development 5, 183–191</em>. Physical costs of information processing; not a fixed cost for every operation.<a href="#order-fnref-4" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="purpose" data-name="purpose">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">04</span><span class="nm">purpose</span><span class="ln"></span></div>
+    <h2>Purpose is a commitment we can defend.</h2>
+    <article class="prose">
+      <p>Ordogenism proposes a purpose for reflective beings: to help life and its valuable possibilities flourish. It does not claim that nature has issued this instruction.</p>
+<p>An evolutionary explanation tells us how a trait arose or persisted. It does not tell us that we should imitate the process that selected it. Competition, cooperation, predation, and care all occur in nature. Their occurrence cannot, on its own, decide which actions deserve our allegiance.<sup class="footnote-ref" id="purpose-fnref-1"><a href="#purpose-fn-1">1</a></sup></p>
+<p>The case for Ordogenism begins closer to experience. Pain can make a life go badly; affection, understanding, freedom, and achievement can make one go better. These goods depend on conditions that no individual creates alone: a habitable environment, inherited knowledge, trustworthy relationships, and institutions that protect people against domination. We receive these conditions from others and can help provide them in turn.<sup class="footnote-ref" id="purpose-fnref-2"><a href="#purpose-fn-2">2</a></sup></p>
+<p>This gives us reasons to care about continuity beyond our own lifespan. If worthwhile lives matter now, the mere fact that other lives will occur later does not make them worthless.<sup class="footnote-ref" id="purpose-fnref-3"><a href="#purpose-fn-3">3</a></sup> If inquiry matters, we have reason to preserve the conditions under which others can question even our deepest convictions. A good inheritance includes the freedom to reject parts of the inheritance.</p>
+<p>There is no requirement that everyone adopt one vocation. A scientist, a nurse, a parent, a musician, and a person restoring a damaged habitat may contribute in different ways. Some contributions yield new capacities; others protect beings whose worth does not depend on their productivity. Rest, pleasure, and friendship need no cosmic justification.</p>
+<p>Ordogenism offers orientation rather than an accounting system for existence. Its question is not how much a person has produced, but how we can live and act so that worthwhile possibilities remain available to ourselves and to others. A purpose becomes stronger when it can survive criticism, coexist with other defensible purposes, and guide ordinary decisions.</p>
+<blockquote>
+<p>A meaningful life can contribute to a future it will never see.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/0CLbmkYmQIWiEwnsbOkLpd" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">A Love Supreme, Pt. 1 — Acknowledgement — John Coltrane</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="purpose-fn-1"><p>Hume, D. (1739–1740). <a href="https://davidhume.org/texts/t/3/1/1" target="_blank" rel="noopener noreferrer">A Treatise of Human Nature</a>. <em>Book III, part I, section I, paragraph 27</em>. A philosophical source for making the step from description to obligation explicit.<a href="#purpose-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="purpose-fn-2"><p>Nussbaum, M. C. (2011). <a href="https://www.hup.harvard.edu/books/9780674072350" target="_blank" rel="noopener noreferrer">Creating Capabilities: The Human Development Approach</a>. <em>Harvard University Press</em>. A related plural account of flourishing and real opportunities; the Ordogenist extension is proposed here.<a href="#purpose-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="purpose-fn-3"><p>Parfit, D. (1984). <a href="https://doi.org/10.1093/019824908X.001.0001" target="_blank" rel="noopener noreferrer">Reasons and Persons</a>. <em>Clarendon Press, parts III–IV; linked later edition</em>. Examines identity and obligations concerning future people; these questions remain contested.<a href="#purpose-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="responsibility" data-name="responsibility">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">05</span><span class="nm">responsibility</span><span class="ln"></span></div>
+    <h2>The future begins with obligations here.</h2>
+    <article class="prose">
+      <p>For Ordogenism, responsibility follows from our ability to affect vulnerable lives and shared conditions. Future possibilities extend those responsibilities; they do not cancel present ones.</p>
+<p>Every ambitious project borrows from a world already inhabited. It uses accumulated knowledge, public institutions, natural systems, and the labor of people who may never share in its rewards. A philosophy concerned with life’s continuation must account for these dependencies before it celebrates what comes next.</p>
+<p>Responsibility has several directions. We owe consideration to people affected now, to future people who cannot participate in today’s decisions, and to nonhuman beings whose lives can be harmed by our actions. These claims can conflict. Describing a project as beneficial to “life” does not settle whose burdens are acceptable or who should decide.<sup class="footnote-ref" id="responsibility-fnref-1"><a href="#responsibility-fn-1">1</a></sup><sup class="footnote-ref" id="responsibility-fnref-2"><a href="#responsibility-fn-2">2</a></sup></p>
+<p>The practical response is to preserve agency, reduce avoidable suffering, sustain ecological conditions, and distribute both opportunity and risk fairly. Where a proposal could impose irreversible harm, its advocates owe a stronger case than enthusiasm about distant benefits. Reversible experiments and independently assessable evidence are especially valuable under deep uncertainty.<sup class="footnote-ref" id="responsibility-fnref-3"><a href="#responsibility-fn-3">3</a></sup></p>
+<p>There is no individual duty to reproduce. Parenthood can be a profound contribution, but biological reproduction is not the measure of a person’s value or citizenship. Teaching, protecting, inventing, maintaining, and caring are also ways of giving a future to others. No collective ambition licenses control over another person’s body or reproductive choices.</p>
+<p>Likewise, developing synthetic life would be one possible expression of responsibility, not the sole project that makes humanity worthwhile. Reducing disease, protecting ecosystems, and making institutions more just have value whether or not autonomous machine ecologies ever exist. A future worth creating must be continuous with a present worth inhabiting.</p>
+<blockquote>
+<p>The lives already here are part of the purpose, never expendable preparation for it.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/0F3XCucVoXCOn3iYyNOkxW" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Köln, January 24, 1975, Pt. 1 — Live — Keith Jarrett</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="responsibility-fn-1"><p>Jonas, H. (1984). <a href="https://press.uchicago.edu/ucp/books/book/chicago/I/bo5953283.html" target="_blank" rel="noopener noreferrer">The Imperative of Responsibility: In Search of an Ethics for the Technological Age</a>. <em>University of Chicago Press</em>. A philosophical account of responsibility enlarged by technological power.<a href="#responsibility-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="responsibility-fn-2"><p>Nussbaum, M. C. (2011). <a href="https://www.hup.harvard.edu/books/9780674072350" target="_blank" rel="noopener noreferrer">Creating Capabilities: The Human Development Approach</a>. <em>Harvard University Press</em>. A related plural account of flourishing and real opportunities; the Ordogenist extension is proposed here.<a href="#responsibility-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="responsibility-fn-3"><p>Stirling, A. (2008). <a href="https://doi.org/10.1177/0162243907311265" target="_blank" rel="noopener noreferrer">“Opening Up” and “Closing Down”: Power, Participation, and Pluralism in the Social Appraisal of Technology</a>. <em>Science, Technology, &amp; Human Values 33, 262–294</em>. A related argument for examining alternatives and keeping technological choices open.<a href="#responsibility-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="adaptation" data-name="adaptation">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">06</span><span class="nm">adaptation</span><span class="ln"></span></div>
+    <h2>Choose the form that fits the world.</h2>
+    <article class="prose">
+      <p>Ordogenism welcomes new forms of embodiment when they expand worthwhile possibilities. Their advantages must be demonstrated for particular environments and tasks.</p>
+<p>Biological bodies are remarkable achievements of adaptation to terrestrial conditions. They are not universally optimal. Machines can operate across some ranges of temperature, acceleration, duration, and resource availability that would be difficult for unaided human bodies. This makes robotic exploration a compelling avenue for extending our reach.</p>
+<p>It does not make space easy for machines. Radiation can damage electronics; vacuum complicates lubrication; dust degrades exposed surfaces. A machine that does not need food may still need replacement bearings, clean reagents, functioning power systems, and a way to detect failures before they become terminal.<sup class="footnote-ref" id="adaptation-fnref-1"><a href="#adaptation-fn-1">1</a></sup><sup class="footnote-ref" id="adaptation-fnref-2"><a href="#adaptation-fn-2">2</a></sup><sup class="footnote-ref" id="adaptation-fnref-3"><a href="#adaptation-fn-3">3</a></sup></p>
+<p>The useful comparison is between complete mission architectures. A biological system may repair itself with chemistry that is difficult to reproduce industrially. A manufactured system may be easier to redesign or place in prolonged dormancy. Hybrid systems could combine strengths while introducing new dependencies. These are engineering trade-offs, not grounds for contempt toward any form of life.</p>
+<p>Nor does evolutionary history describe a procession in which a superior species inherits the place of an inferior one. Evolution branches. Lineages coexist, diversify, simplify, and disappear. Our own ancestry includes interbreeding among populations once treated as cleanly separated categories.<sup class="footnote-ref" id="adaptation-fnref-4"><a href="#adaptation-fn-4">4</a></sup></p>
+<p>The goal should therefore be appropriate embodiment: systems whose materials, maintenance requirements, and modes of reproduction suit their circumstances. An Ordogenist can support a probe capable of a long journey, the restoration of a wetland, and better care for a human body without ranking them along one ladder. Expanding life’s forms is most defensible when it expands possibilities without declaring existing beings failures.</p>
+<blockquote>
+<p>Adaptation is a relation between a system and its circumstances, not a cosmic ranking.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/5Q1Omf4clMDZhTLYrhKl9o" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Space Oddity — David Bowie</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="adaptation-fn-1"><p>NASA (2026). <a href="https://www.nasa.gov/smallsat-institute/sst-soa/small-spacecraft-avionics/" target="_blank" rel="noopener noreferrer">8.0 Small Spacecraft Avionics</a>. <em>State-of-the-Art of Small Spacecraft Technology, §8.2.1</em>. Institutional technical survey of radiation effects and mitigation in electronics.<a href="#adaptation-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="adaptation-fn-2"><p>Roberts, E. W., &amp; Eiden, M. (1998). <a href="https://www.esa.int/esapub/bulletin/bullet94/ROB.pdf" target="_blank" rel="noopener noreferrer">A Space Tribology Handbook</a>. <em>ESA Bulletin 94</em>. Institutional technical account of friction, wear, and lubrication in space mechanisms.<a href="#adaptation-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="adaptation-fn-3"><p>Gaier, J. R., &amp; Jaworske, D. A. (2007). <a href="https://doi.org/10.1063/1.2437437" target="_blank" rel="noopener noreferrer">Lunar Dust on Heat Rejection System Surfaces: Problems and Prospects</a>. <em>AIP Conference Proceedings 880, 27–34</em>. Evidence of dust-induced degradation and the need for mitigation.<a href="#adaptation-fnref-3" class="footnote">&#8617;</a></p></li>
+<li id="adaptation-fn-4"><p>Green, R. E., et al. (2010). <a href="https://doi.org/10.1126/science.1188021" target="_blank" rel="noopener noreferrer">A Draft Sequence of the Neandertal Genome</a>. <em>Science 328, 710–722</em>. Genomic evidence for gene flow; no claim of a ladder of species follows.<a href="#adaptation-fnref-4" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="strategy" data-name="strategy">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">07</span><span class="nm">strategy</span><span class="ln"></span></div>
+    <h2>Cooperation has to be built.</h2>
+    <article class="prose">
+      <p>Ordogenism favors cooperation because shared learning can enlarge what participants are able to do. It treats peaceful coexistence as a design and governance problem.</p>
+<p>Abundant resources can reduce some conflicts. They cannot abolish conflict as a matter of logic. Access to energy, transport corridors, communication channels, strategic locations, and trusted information can remain scarce even in a large environment. A resource that is abundant in a galaxy may be unavailable to a particular system when it needs it.</p>
+<p>Intelligence supplies no guarantee of benevolence. A capable agent can use its abilities in pursuit of goals that conflict with ours. Formal models of artificial agency show why some objectives and environments can reward acquiring influence or retaining options, without requiring hatred or a humanlike appetite for domination.<sup class="footnote-ref" id="strategy-fnref-1"><a href="#strategy-fn-1">1</a></sup></p>
+<p>For a proposed machine ecology, cooperation would depend on incentive design, compatibility, verification, limits on harmful behavior, and mechanisms for handling disagreement. Institutions matter because they shape expectations and allow participants to respond to defections. Human studies of shared resources already show that neither inevitable conflict nor effortless harmony is an adequate general account.<sup class="footnote-ref" id="strategy-fnref-2"><a href="#strategy-fn-2">2</a></sup></p>
+<p>Distance creates another trade-off. Dispersal could reduce a shared exposure to local disasters. It would also delay communication and weaken the ability to intervene when a distant system causes harm. Launching descendants far away is therefore not a substitute for understanding their behavior.</p>
+<p>An Ordogenist strategy begins with cooperation that can be tested: bounded systems, traceable exchanges, observable commitments, and mechanisms for correcting mistakes. Larger autonomy should follow stronger evidence. The attractive future is not one in which we assume nobody will become an enemy. It is one in which we have deliberately reduced the reasons and opportunities for doing harm.</p>
+<blockquote>
+<p>Peace is an achievement to maintain, not a property that intelligence automatically acquires.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/0ccCwNzXvr1Yoz91vKz31Z" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Yoshimi Battles the Pink Robots, Pt. 1 — The Flaming Lips</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="strategy-fn-1"><p>Turner, A. M., Smith, L., Shah, R., Critch, A., &amp; Tadepalli, P. (2021). <a href="https://arxiv.org/abs/1912.01683" target="_blank" rel="noopener noreferrer">Optimal Policies Tend to Seek Power</a>. <em>Advances in Neural Information Processing Systems 34</em>. Formal results under specified environmental assumptions, not a universal prediction of AI behavior.<a href="#strategy-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="strategy-fn-2"><p>Ostrom, E. (2010). <a href="https://doi.org/10.1257/aer.100.3.641" target="_blank" rel="noopener noreferrer">Beyond Markets and States: Polycentric Governance of Complex Economic Systems</a>. <em>American Economic Review 100, 641–672</em>. Human institutional research; application to machine ecologies is a design analogy.<a href="#strategy-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="science" data-name="science">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">08</span><span class="nm">science</span><span class="ln"></span></div>
+    <h2>Let the argument expose itself to correction.</h2>
+    <article class="prose">
+      <p>Ordogenism combines empirical claims, philosophical commitments, and proposals for research. Its credibility depends on keeping their different standards of justification visible.</p>
+<p>Some claims in this essay belong to established science: life depends on physical processes; biological evolution involves inheritance and variation; communication and computation have physical constraints. Other claims are engineering hypotheses: a collection of machines might eventually maintain and reproduce the industrial capacities on which it depends. Others are ethical proposals: we should care for future lives and resist destructive concentrations of power.</p>
+<p>These categories need one another, but they cannot certify one another. A successful experiment would not prove the whole philosophy. Agreement with its ethics would not make an untested machine feasible. Compatibility with known physics is a necessary condition for an engineering proposal, far short of a demonstration.</p>
+<p>Scientific credibility grows through exposure to criticism, measurement, and revision. This includes publishing failures, specifying the conditions under which a result holds, and making the materials needed to examine it available. A community’s capacity to identify error matters as much as an individual’s confidence.<sup class="footnote-ref" id="science-fnref-1"><a href="#science-fn-1">1</a></sup><sup class="footnote-ref" id="science-fnref-2"><a href="#science-fn-2">2</a></sup></p>
+<p>Ordogenism should make its own vulnerabilities explicit. If a favored mechanism repeatedly fails, the mechanism should change. If an ethical rule causes harms it was meant to prevent, its formulation deserves reconsideration. If a proposed metric displaces the actual good it was intended to represent, the metric should lose authority.</p>
+<p>No date for artificial general intelligence, autonomous industrial reproduction, or interstellar settlement is a premise of the philosophy. Its near-term commitments remain meaningful without any of them. What connects the practical and the speculative is a disciplined willingness to ask what can be built, what should be built, and what evidence would persuade us to stop.</p>
+<blockquote>
+<p>An ambitious philosophy should make its errors discoverable.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/1qd43SgWJ5sf6Ou6ngTTQ4" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Major Tom — The Space Lady</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="science-fn-1"><p>Popper, K. R. (1959). <a href="https://www.routledge.com/The-Logic-of-Scientific-Discovery/Popper/p/book/9780415278447" target="_blank" rel="noopener noreferrer">The Logic of Scientific Discovery</a>. <em>Hutchinson; later Routledge edition</em>. An influential account of empirical testing, not the only philosophy of science.<a href="#science-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="science-fn-2"><p>Longino, H. E. (1990). <a href="https://www.jstor.org/stable/j.ctvx5wbfz" target="_blank" rel="noopener noreferrer">Science as Social Knowledge: Values and Objectivity in Scientific Inquiry</a>. <em>Princeton University Press</em>. A philosophical account of criticism, assumptions, and scientific objectivity.<a href="#science-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="success" data-name="success">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">09</span><span class="nm">success</span><span class="ln"></span></div>
+    <h2>Measure capacities. Explain the trade-offs.</h2>
+    <article class="prose">
+      <p>Ordogenism judges success by the valuable conditions an activity sustains or creates. It rejects a universal score for life, civilization, or moral worth.</p>
+<p>A machine ecology would need quantitative measures. Energy consumed per usable component, successful repairs, material recovery, performance after disruption, and the fraction of essential inputs obtained without outside assistance could all reveal real progress. Reproduction would require more than producing a large mass of equipment: the offspring would have to perform the functions needed for its own continuation.</p>
+<p>Yet every measure answers a specified question. Cheap production can conceal damage elsewhere. Higher throughput can come at the cost of brittle dependencies. More information can mean more duplication or more error. The system boundary, time horizon, assumptions, and distribution of consequences must accompany the number.</p>
+<p>The same is true at larger scales. Resilience concerns the capacity to absorb disturbance without losing essential functions; it is not identical to efficiency or stability. A resilient arrangement may retain redundancy and diversity that look wasteful in a narrow production calculation.<sup class="footnote-ref" id="success-fnref-1"><a href="#success-fn-1">1</a></sup></p>
+<p>For human purposes, evaluation should include well-being, agency, ecological integrity, reliable knowledge, and the options left to others. These dimensions cannot always be converted into one common unit. Making the disagreement visible can be more honest and more useful than hiding it in an aggregate score.<sup class="footnote-ref" id="success-fnref-2"><a href="#success-fn-2">2</a></sup></p>
+<p>Ordogenism therefore calls for accountable measurement: define the aim, choose evidence relevant to it, disclose what the measure omits, and retain independent checks on harm. The problem of a proxy becoming a target is especially acute in automated systems, where a precisely optimized score can diverge from the intention that motivated it.<sup class="footnote-ref" id="success-fnref-3"><a href="#success-fn-3">3</a></sup></p>
+<p>The test of success is ultimately substantive. Has this work made valuable activity more possible, and can the people affected examine the price? A number helps answer that question when it remains evidence within an argument, rather than becoming a substitute for judgment.</p>
+<blockquote>
+<p>A useful measure clarifies a judgment; it does not relieve us of making one.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/21GAShK3ha9dEfdhQBjqOy" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Rubycon — Pt. 1 — Tangerine Dream</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="success-fn-1"><p>Holling, C. S. (1973). <a href="https://doi.org/10.1146/annurev.es.04.110173.000245" target="_blank" rel="noopener noreferrer">Resilience and Stability of Ecological Systems</a>. <em>Annual Review of Ecology and Systematics 4, 1–23</em>. The extension from ecological resilience to engineered systems is an analogy.<a href="#success-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="success-fn-2"><p>Sen, A. (1993). <a href="https://sen.scholars.harvard.edu/publications/capability-and-well-being-0" target="_blank" rel="noopener noreferrer">Capability and Well-Being</a>. <em>In M. Nussbaum &amp; A. Sen, eds., The Quality of Life. Clarendon Press</em>. A philosophical account of functionings and substantive opportunities.<a href="#success-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="success-fn-3"><p>Skalse, J., Howe, N., Krasheninnikov, D., &amp; Krueger, D. (2022). <a href="https://arxiv.org/abs/2209.13085" target="_blank" rel="noopener noreferrer">Defining and Characterizing Reward Hacking</a>. <em>Research paper, arXiv:2209.13085</em>. Analyzes divergence between proxy rewards and intended objectives under formal assumptions.<a href="#success-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="acceleration" data-name="acceleration">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">10</span><span class="nm">acceleration</span><span class="ln"></span></div>
+    <h2>Faster learning is not the same as faster change.</h2>
+    <article class="prose">
+      <p>Ordogenism values improvements that can be tested, retained, and shared. The rate of change matters only in relation to the quality and consequences of that change.</p>
+<p>Biological evolution has no single speed. Rates differ across organisms, environments, and traits. Human beings also inherit language, institutions, tools, and practices through cultural transmission. We already learn from far more than two parents, and that inheritance can change much faster than our genes.<sup class="footnote-ref" id="acceleration-fnref-1"><a href="#acceleration-fn-1">1</a></sup></p>
+<p>Machine systems could extend this separation between genetic inheritance and acquired knowledge. A tested improvement might be communicated to many installations without waiting for a biological generation. Simulations could explore alternatives, and shared records could help distant teams avoid repeating a failure. These are substantial possibilities without requiring a claim of unlimited acceleration.</p>
+<p>The bottleneck can move. Discovering a design does not manufacture it. A simulation may depend on an inaccurate model. An improvement in one environment may fail in another. Verifying a new material, recovering from an experiment, or waiting for an observation may take time that more processors cannot eliminate.</p>
+<p>Fast dissemination also creates correlated failure. If every participant adopts the same faulty update, a network can lose the diversity that previously protected it. Reliability research shows how supposedly redundant implementations can still fail together when their errors are not independent.<sup class="footnote-ref" id="acceleration-fnref-2"><a href="#acceleration-fn-2">2</a></sup></p>
+<p>The right objective is a better learning cycle: propose, test, criticize, compare, deploy proportionately, and preserve the ability to recover. Some decisions deserve rapid iteration. Others deserve deliberate delay because their consequences are difficult to reverse. The distinction depends on exposure to harm, not on whether the system is biological or artificial.</p>
+<p>An Ordogenist should welcome speed when it produces better understanding or relieves suffering sooner. Speed without correction can amplify error just as effectively. The most valuable acceleration is an increased ability to discover that we are wrong before too much depends on being right.</p>
+<blockquote>
+<p>Progress is change that earns its continuation.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/search/Animal%20Waves%20CAN" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Animal Waves — CAN</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="acceleration-fn-1"><p>Boyd, R., Richerson, P. J., &amp; Henrich, J. (2011). <a href="https://doi.org/10.1073/pnas.1100290108" target="_blank" rel="noopener noreferrer">The cultural niche: Why social learning is essential for human adaptation</a>. <em>PNAS 108, 10918–10925</em>. A synthesis of the role of cumulative cultural inheritance.<a href="#acceleration-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="acceleration-fn-2"><p>Knight, J. C., &amp; Leveson, N. G. (1986). <a href="https://doi.org/10.1109/TSE.1986.6312924" target="_blank" rel="noopener noreferrer">An experimental evaluation of the assumption of independence in multiversion programming</a>. <em>IEEE Transactions on Software Engineering SE-12, 96–109</em>. Independently developed programs can exhibit correlated failures.<a href="#acceleration-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="time" data-name="time">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">11</span><span class="nm">time</span><span class="ln"></span></div>
+    <h2>Finitude gives us reasons to care.</h2>
+    <article class="prose">
+      <p>Ordogenism takes the long future seriously without claiming to know its duration. The limits of physical access matter more than an image of an inexhaustible universe.</p>
+<p>The observable universe is not the same as the universe we can reach. What we see is constrained by light travel and cosmic history; what a future traveler could reach depends on expansion and the trajectory taken. Under the standard cosmological model, accelerated expansion limits future causal access to distant regions. Enormous total resources do not imply unlimited resources available to any particular civilization.<sup class="footnote-ref" id="time-fnref-1"><a href="#time-fn-1">1</a></sup><sup class="footnote-ref" id="time-fnref-2"><a href="#time-fn-2">2</a></sup></p>
+<p>Likewise, mass-energy equivalence does not make matter freely convertible into useful work. Practical conversion mechanisms, accessible energy gradients, waste heat, and the organization of the machinery all matter. The relevant resource is not an abstract inventory of energy but the ability to use it under actual physical conditions.</p>
+<p>Long-term cosmological scenarios explore stellar evolution, dwindling energy sources, and possible forms of computation in a changing universe. Their conclusions depend on assumptions about physics and cosmology. They do not support a simple countdown announcing when every conceivable form of life must end.<sup class="footnote-ref" id="time-fnref-3"><a href="#time-fn-3">3</a></sup></p>
+<p>The ethical significance of time requires less certainty. People suffer now. Ecosystems can lose irreplaceable features. Knowledge can vanish when its carriers and institutions disappear. Some opportunities are temporary even if the universe remains habitable for an unimaginably long time. These are sufficient reasons to act without inventing a cosmic deadline.</p>
+<p>Finitude also counsels restraint. Because our knowledge and attention are limited, not every imaginable future should become a present obligation. We should attend to the robustness of our reasons, the scale of the effects we can actually influence, and the opportunity costs of what we choose.</p>
+<p>Ordogenism treats time as a field of responsibility: enough urgency to care for what can be lost, enough patience to build what deserves to last. The future need not be infinite to be worth our effort.</p>
+<blockquote>
+<p>A limited opportunity can have enduring value without promising eternity.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/73OIUNKRi2y24Cu9cOLrzM" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">On the Run — Pink Floyd</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="time-fn-1"><p>Krauss, L. M., &amp; Starkman, G. D. (2000). <a href="https://doi.org/10.1086/308434" target="_blank" rel="noopener noreferrer">Life, the Universe, and Nothing: Life and Death in an Ever-Expanding Universe</a>. <em>Astrophysical Journal 531, 22–30</em>. Long-term limits conditional on cosmological assumptions.<a href="#time-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="time-fn-2"><p>Davis, T. M., &amp; Lineweaver, C. H. (2004). <a href="https://arxiv.org/abs/astro-ph/0310808" target="_blank" rel="noopener noreferrer">Expanding Confusion: Common Misconceptions of Cosmological Horizons and the Superluminal Expansion of the Universe</a>. <em>Publications of the Astronomical Society of Australia 21, 97–109</em>. Distinguishes observation, recession, and causal horizons.<a href="#time-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="time-fn-3"><p>Adams, F. C., &amp; Laughlin, G. (1997). <a href="https://doi.org/10.1103/RevModPhys.69.337" target="_blank" rel="noopener noreferrer">A dying universe: the long-term fate and evolution of astrophysical objects</a>. <em>Reviews of Modern Physics 69, 337–372</em>. A theoretical exploration of long timescales, with uncertain physical assumptions.<a href="#time-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="inheritance" data-name="inheritance">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">12</span><span class="nm">inheritance</span><span class="ln"></span></div>
+    <h2>Knowledge can travel farther than its makers.</h2>
+    <article class="prose">
+      <p>Ordogenism regards the transmission of usable knowledge as one of humanity’s most powerful ways to create a future. Information can move separately from the matter that implements it.</p>
+<p>A design can be developed in one place and realized in another. This separation is already ordinary in science and manufacturing. The possibility becomes especially consequential for distant machine ecologies: instructions could cross distances that would make shipment of a physical component slow or impractical.</p>
+<p>Von Neumann’s analysis of reproduction clarifies why the distinction matters. A description can function both as instructions interpreted by a constructor and as information copied for a descendant. But a description alone cannot supply the constructor, materials, power, or working environment.<sup class="footnote-ref" id="inheritance-fnref-1"><a href="#inheritance-fn-1">1</a></sup></p>
+<p>The recipient must possess compatible capabilities. A design for a motor is useless without the necessary materials, tolerances, tools, and means of measurement. Tacit knowledge also matters: some successful practices are difficult to capture fully in formal instructions. Scientific and industrial replication require more than moving a file.<sup class="footnote-ref" id="inheritance-fnref-2"><a href="#inheritance-fn-2">2</a></sup></p>
+<p>A responsible inheritance would therefore include assumptions, calibration procedures, provenance, known failure modes, and evidence of performance. A distant recipient should be able to decide whether the conditions behind a claim resemble its own. It should also be able to reject an update, test it in a limited setting, and preserve a previous version.</p>
+<p>Communication across space imposes a further limit. Messages cannot provide instantaneous coordination over astronomical distances. As separation grows, local judgment becomes more important, and received knowledge increasingly describes a remote past. The network would need to support disagreement and partial independence.</p>
+<p>The enduring insight is modest and powerful: creation need not depend on the creator’s continued presence. We can build knowledge that others can examine, adapt, and improve. That is already a form of participation beyond the individual, whether the recipients are children, colleagues, future societies, or systems we have not yet learned to construct.</p>
+<blockquote>
+<p>The best inheritance gives its recipients both useful knowledge and the means to question it.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/5GeMbKc9c4uWCmSS0er8Qq" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Merry Christmas Mr. Lawrence — Ryuichi Sakamoto</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="inheritance-fn-1"><p>von Neumann, J. (1966). <a href="https://dl.acm.org/doi/10.5555/1102024" target="_blank" rel="noopener noreferrer">Theory of Self-Reproducing Automata</a>. <em>A. W. Burks, ed. University of Illinois Press</em>. A formal construction under specified assumptions.<a href="#inheritance-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="inheritance-fn-2"><p>Collins, H. M. (1974). <a href="https://doi.org/10.1177/030631277400400203" target="_blank" rel="noopener noreferrer">The TEA Set: Tacit Knowledge and Scientific Networks</a>. <em>Science Studies 4, 165–185</em>. A study of practical knowledge in experimental replication.<a href="#inheritance-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="incentives" data-name="incentives">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">13</span><span class="nm">incentives</span><span class="ln"></span></div>
+    <h2>Make shared learning worth sustaining.</h2>
+    <article class="prose">
+      <p>Ordogenism favors institutions that reward useful contributions, expose error, and allow knowledge to circulate responsibly. Cooperation requires more than an appeal to collective benefit.</p>
+<p>Knowledge can often be used by one person without preventing another from using it. This makes discovery different from consuming a finite physical object. Sharing a result can allow others to build on it, identify an error, or find an application its author never imagined.<sup class="footnote-ref" id="incentives-fnref-1"><a href="#incentives-fn-1">1</a></sup></p>
+<p>But producing, checking, and maintaining knowledge has costs. Recognition, employment, competition, security, and unequal access all shape what people reveal. The fact that a community could benefit from cooperation does not mean that each participant has sufficient reason or opportunity to cooperate.</p>
+<p>Research on shared resources offers a better starting point than a choice between universal altruism and inevitable selfishness. Institutions can create clear responsibilities, monitor behavior, resolve disputes, and adapt rules to local conditions. Their success is contextual rather than automatic.<sup class="footnote-ref" id="incentives-fnref-2"><a href="#incentives-fn-2">2</a></sup></p>
+<p>Science also needs incentives for work that is easy to undervalue: replication, careful measurement, curation, and the publication of negative results. Selective reporting can make the visible record misleading. Correcting that problem requires changes to evaluation and publication, not a claim that all existing science is worthless.<sup class="footnote-ref" id="incentives-fnref-3"><a href="#incentives-fn-3">3</a></sup></p>
+<p>Machine ecologies would face related design questions. Who checks incoming knowledge? How are errors traced? What prevents a malformed or malicious update from spreading? When should safety considerations limit immediate disclosure? Openness is valuable, but it is not an instruction to broadcast every capability without regard to consequences.</p>
+<p>Ordogenism’s practical aim is durable reciprocity: a system in which contributors can expect scrutiny, credit, and useful work in return, while others retain fair access to the knowledge on which their lives depend. A successful knowledge commons needs maintenance, just as a physical commons does. Sharing becomes powerful when the conditions for trust are also shared.</p>
+<blockquote>
+<p>A commons is a continuing practice of contribution, criticism, and care.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/7CjHVBO2kxsRKvKU5rF6XX" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Les Yper Sound — Stereolab</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="incentives-fn-1"><p>Arrow, K. J. (1962). <a href="https://www.nber.org/books-and-chapters/rate-and-direction-inventive-activity-economic-and-social-factors/economic-welfare-and-allocation-resources-invention" target="_blank" rel="noopener noreferrer">Economic Welfare and the Allocation of Resources for Invention</a>. <em>In The Rate and Direction of Inventive Activity: Economic and Social Factors, 609–626. Princeton University Press/NBER</em>. An economic analysis of information, invention, uncertainty, and appropriation.<a href="#incentives-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="incentives-fn-2"><p>Ostrom, E. (2010). <a href="https://doi.org/10.1257/aer.100.3.641" target="_blank" rel="noopener noreferrer">Beyond Markets and States: Polycentric Governance of Complex Economic Systems</a>. <em>American Economic Review 100, 641–672</em>. Human institutional research; application to machine ecologies is a design analogy.<a href="#incentives-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="incentives-fn-3"><p>Fanelli, D. (2012). <a href="https://doi.org/10.1007/s11192-011-0494-7" target="_blank" rel="noopener noreferrer">Negative results are disappearing from most disciplines and countries</a>. <em>Scientometrics 90, 891–904</em>. Documents patterns in the published record; it does not establish a single cause.<a href="#incentives-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="bandwidth" data-name="bandwidth">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">14</span><span class="nm">bandwidth</span><span class="ln"></span></div>
+    <h2>Understanding is more than transmission.</h2>
+    <article class="prose">
+      <p>Ordogenism values the circulation of knowledge while distinguishing the movement of data from learning, comprehension, and justified belief.</p>
+<p>A channel can transfer data quickly without transferring understanding. Shannon’s mathematical theory deliberately separates the engineering problem of communication from the semantic question of what a message means. Its success does not erase that distinction.<sup class="footnote-ref" id="bandwidth-fnref-1"><a href="#bandwidth-fn-1">1</a></sup></p>
+<p>For that reason, a comparison between bytes read by a person and bytes moved through a computer is not a measure of relative intelligence. A book’s file size depends on encoding. A learner’s achievement depends on prior knowledge, inference, attention, and the ability to use what was read. Counting transmitted bits leaves most of this unexplained.</p>
+<p>Nor does human knowledge disappear whenever a person dies. Some knowledge is lost, often painfully. Much also survives in language, tools, institutions, teaching, recorded work, and the changed capacities of other people. Cumulative culture depends precisely on transmission that extends beyond one lifespan.<sup class="footnote-ref" id="bandwidth-fnref-2"><a href="#bandwidth-fn-2">2</a></sup></p>
+<p>Artificial systems may make some forms of copying and coordination cheaper. This could help preserve specialized knowledge and allow many systems to benefit from a discovery. It can also copy bias, propagate falsehood, or overwhelm a recipient with claims it cannot evaluate. Greater bandwidth increases the scale of both possibilities.</p>
+<p>The useful bottlenecks are therefore semantic and institutional as well as physical. Can a recipient identify what a claim is about, inspect its evidence, estimate uncertainty, and determine where it applies? Can the community correct a mistake without erasing the record of how it occurred? Can access be maintained as formats and institutions change? These questions motivate practices that make data findable, accessible, interoperable, and reusable.<sup class="footnote-ref" id="bandwidth-fnref-3"><a href="#bandwidth-fn-3">3</a></sup></p>
+<p>An Ordogenist measures communication by the capabilities it creates in its recipients. Faster transmission is welcome when it serves that aim. The deeper accomplishment is a body of knowledge that remains intelligible, contestable, and usable across distance and time.</p>
+<blockquote>
+<p>The value of a message lies in what someone can responsibly do with it.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/5KRFVt2GykTVCEQhmYW7um" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">This Magic Moment — Lou Reed</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="bandwidth-fn-1"><p>Shannon, C. E. (1948). <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x" target="_blank" rel="noopener noreferrer">A Mathematical Theory of Communication</a>. <em>Bell System Technical Journal 27, 379–423, 623–656</em>. The linked first part defines a mathematical communication problem, not a measure of value.<a href="#bandwidth-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="bandwidth-fn-2"><p>Boyd, R., Richerson, P. J., &amp; Henrich, J. (2011). <a href="https://doi.org/10.1073/pnas.1100290108" target="_blank" rel="noopener noreferrer">The cultural niche: Why social learning is essential for human adaptation</a>. <em>PNAS 108, 10918–10925</em>. A synthesis of the role of cumulative cultural inheritance.<a href="#bandwidth-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="bandwidth-fn-3"><p>Wilkinson, M. D., et al. (2016). <a href="https://doi.org/10.1038/sdata.2016.18" target="_blank" rel="noopener noreferrer">The FAIR Guiding Principles for scientific data management and stewardship</a>. <em>Scientific Data 3, 160018</em>. FAIR supports reusable, machine-actionable research objects; it does not certify truth.<a href="#bandwidth-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="intelligence" data-name="intelligence">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">15</span><span class="nm">intelligence</span><span class="ln"></span></div>
+    <h2>Intelligence needs ways to discover its mistakes.</h2>
+    <article class="prose">
+      <p>For Ordogenism, valuable intelligence includes learning, reasoning, testing, and revising beliefs. No single architecture is entitled in advance to monopolize these abilities.</p>
+<p>A capable autonomous system would need to perceive imperfectly, act under uncertainty, reason about consequences, and recognize when its models no longer fit. Symbolic methods, statistical learning, search, simulation, and experimental interaction can each contribute. Their combination is an empirical design question, not a contest that philosophical preference can settle.</p>
+<p>Learning systems have already contributed to mathematical and scientific discovery. Work connecting machine learning with mathematicians’ conjecture formation illustrates one productive relationship between pattern recognition and rigorous proof. It does not imply that every proposed result is reliable or that general scientific autonomy has been achieved.<sup class="footnote-ref" id="intelligence-fnref-1"><a href="#intelligence-fn-1">1</a></sup></p>
+<p>Formal reasoning also has limits. Gödel’s incompleteness theorems constrain what sufficiently expressive, effectively axiomatized formal systems can establish under specified consistency conditions. Rigorous inquiry can proceed while acknowledging what a formalism leaves undecided. An artificial scientist would need to handle those limits just as human mathematicians do.<sup class="footnote-ref" id="intelligence-fnref-2"><a href="#intelligence-fn-2">2</a></sup></p>
+<p>Empirical inquiry introduces another limit: a correct derivation can rest on assumptions that do not describe the world. Observation, model comparison, and experimental testing remain necessary. Bayesian inference can provide a disciplined framework for updating beliefs, while model checking can reveal failures that inference within a fixed model would otherwise conceal.<sup class="footnote-ref" id="intelligence-fnref-3"><a href="#intelligence-fn-3">3</a></sup></p>
+<p>The relevant ambition is not an infallible mind. It is a system that can make useful judgments, expose its grounds, distinguish evidence from conjecture, and respond appropriately when confidence exceeds support. More consequential decisions require stronger checks.</p>
+<p>An Ordogenist should ask of intelligence what one asks of any powerful capacity: what does it enable, how reliably, under whose control, and with what consequences? Intellectual power becomes an achievement worth preserving when its errors can be challenged and its uses can be justified.</p>
+<blockquote>
+<p>Fallibility is a condition to manage, not a defect that perfect foundations will abolish.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/0o3ODSjbCCHJA9fsH7sNfY" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Little Krishna &amp; The Girls — Chassol</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="intelligence-fn-1"><p>Davies, A., et al. (2021). <a href="https://doi.org/10.1038/s41586-021-04086-x" target="_blank" rel="noopener noreferrer">Advancing mathematics by guiding human intuition with AI</a>. <em>Nature 600, 70–74</em>. Demonstrates machine-learning assistance in mathematical discovery.<a href="#intelligence-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="intelligence-fn-2"><p>Gödel, K. (1931). <a href="https://doi.org/10.1007/BF01700692" target="_blank" rel="noopener noreferrer">Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I</a>. <em>Monatshefte für Mathematik und Physik 38, 173–198</em>. Incompleteness results apply to formal systems satisfying the relevant hypotheses.<a href="#intelligence-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="intelligence-fn-3"><p>Gelman, A., &amp; Shalizi, C. R. (2013). <a href="https://doi.org/10.1111/j.2044-8317.2011.02037.x" target="_blank" rel="noopener noreferrer">Philosophy and the practice of Bayesian statistics</a>. <em>British Journal of Mathematical and Statistical Psychology 66, 8–38</em>. Argues for model checking and revision alongside Bayesian inference.<a href="#intelligence-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="knowledge" data-name="knowledge">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">16</span><span class="nm">knowledge</span><span class="ln"></span></div>
+    <h2>Build an inheritance that can be examined.</h2>
+    <article class="prose">
+      <p>Ordogenism calls for knowledge that both people and machines can inspect, test, and reuse. Its ideal is a living body of inquiry with visible assumptions and revisable conclusions.</p>
+<p>A scientific record should connect claims to the observations, methods, models, and uncertainties that support them. A formula detached from its domain of validity can mislead. A dataset without its measurement procedure may be impossible to interpret. A successful experiment without its unsuccessful companions can give a false picture of reliability.</p>
+<p>Machine-readable knowledge is therefore more than digitized text. It needs explicit quantities, units, identities, relationships, provenance, and conditions of use. The FAIR principles give a practical starting point for making research objects findable, accessible, interoperable, and reusable; they do not by themselves guarantee truth or reproducibility.<sup class="footnote-ref" id="knowledge-fnref-1"><a href="#knowledge-fn-1">1</a></sup></p>
+<p>Existing standards are an inheritance to use critically. The International System of Units supports precise communication across fields and languages. Explicit dimensions and unit conversions allow machines to check relationships that informal descriptions can obscure. Extending interoperability is often more useful than inventing a private convention that others cannot interpret.<sup class="footnote-ref" id="knowledge-fnref-2"><a href="#knowledge-fn-2">2</a></sup></p>
+<p>Different forms of evidence also deserve appropriate methods. Formal proofs, controlled experiments, field observations, historical records, and lived testimony do not become interchangeable when stored in the same system. Bayesian and frequentist techniques can each serve legitimate purposes when their assumptions and inferential targets are explicit. Methodological allegiance should not replace analysis.<sup class="footnote-ref" id="knowledge-fnref-3"><a href="#knowledge-fn-3">3</a></sup></p>
+<p>Finally, a useful inheritance cannot be restricted to what seems immediately productive. History can reveal institutional failure; art can enlarge attention; philosophy can expose an unnoticed assumption. A catalog optimized only for present engineering tasks risks making its recipients technically capable and intellectually narrow.</p>
+<p>The Ordogenist encyclopaedia would preserve not a final inventory of truth but the means of continued inquiry. Its most valuable entry might be a well-described uncertainty: a question whose significance is clear, whose evidence is accessible, and whose answer remains open.</p>
+<blockquote>
+<p>Knowledge grows stronger when its limits travel with it.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/4h5XUmGnV0IwkgNY8TDZKm" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Bop — Brandt Brauer Frick</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="knowledge-fn-1"><p>Wilkinson, M. D., et al. (2016). <a href="https://doi.org/10.1038/sdata.2016.18" target="_blank" rel="noopener noreferrer">The FAIR Guiding Principles for scientific data management and stewardship</a>. <em>Scientific Data 3, 160018</em>. FAIR supports reusable, machine-actionable research objects; it does not certify truth.<a href="#knowledge-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="knowledge-fn-2"><p>BIPM (2019; subsequently updated). <a href="https://www.bipm.org/en/publications/si-brochure" target="_blank" rel="noopener noreferrer">The International System of Units (SI)</a>. <em>SI Brochure, 9th edition, §2.3.3</em>. The official unit definitions provide shared, explicit measurement conventions.<a href="#knowledge-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="knowledge-fn-3"><p>Gelman, A., &amp; Shalizi, C. R. (2013). <a href="https://doi.org/10.1111/j.2044-8317.2011.02037.x" target="_blank" rel="noopener noreferrer">Philosophy and the practice of Bayesian statistics</a>. <em>British Journal of Mathematical and Statistical Psychology 66, 8–38</em>. Argues for model checking and revision alongside Bayesian inference.<a href="#knowledge-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="ecology" data-name="ecology">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">17</span><span class="nm">ecology</span><span class="ln"></span></div>
+    <h2>The system may be larger than the machine.</h2>
+    <article class="prose">
+      <p>Ordogenism uses “machine ecology” for an interacting collection of engineered systems whose capacities depend on one another and on their environment. Its relevant boundaries must be demonstrated.</p>
+<p>A robot capable of assembling another robot may still depend on factories that produce its sensors, chips, bearings, and power supply. If none of those factories can be maintained or replaced, the apparent reproductive unit is incomplete. The meaningful question is what whole set of processes sustains the capability over time.</p>
+<p>This makes a distributed industrial system a more plausible initial unit of investigation than a single universal robot. Different machines could obtain resources, refine materials, construct components, maintain equipment, and coordinate the work. A proposed reproductive unit would include every indispensable function, even when those functions occupy different places.</p>
+<p>Biology offers useful analogies without dictating the answer. Major evolutionary transitions involve changes in how lower-level entities cooperate, reproduce, and manage conflicts. Dependence among organisms can be profound without making every association a single organism.<sup class="footnote-ref" id="ecology-fnref-1"><a href="#ecology-fn-1">1</a></sup><sup class="footnote-ref" id="ecology-fnref-2"><a href="#ecology-fn-2">2</a></sup></p>
+<p>For machine ecologies, <em>reproductive closure</em> should mean a demonstrated ability to reproduce the essential functional system within a declared environment and dependency boundary. It would not mean isolation from all matter, energy, or outside information. Biological life is not closed in that sense either.</p>
+<p>Researchers should distinguish material closure, maintenance capacity, reproduction, and adaptive change. A facility may recycle most of its mass yet fail because it cannot replace a tiny component. It may reproduce a fixed design without being capable of open-ended evolution. Each achievement is worth identifying accurately.</p>
+<p>These boundaries also guide accountability. If a harmful action emerges from many interacting machines and institutions, pointing to one apparently autonomous unit may conceal the actual causes. Ordogenism asks us to understand the dependencies that make a capacity possible, both so that it can endure and so that responsibility does not disappear into the complexity of the system.</p>
+<blockquote>
+<p>To understand what can continue, identify everything its continuation depends on.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/2H2riBoltlfKrU7i495hvf" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Mammagamma — Instrumental — The Alan Parsons Project</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="ecology-fn-1"><p>Szathmáry, E., &amp; Maynard Smith, J. (1995). <a href="https://doi.org/10.1038/374227a0" target="_blank" rel="noopener noreferrer">The major evolutionary transitions</a>. <em>Nature 374, 227–232</em>. Changes in organization and inheritance do not imply universal growth in complexity.<a href="#ecology-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="ecology-fn-2"><p>Queller, D. C., &amp; Strassmann, J. E. (2009). <a href="https://doi.org/10.1098/rstb.2009.0095" target="_blank" rel="noopener noreferrer">Beyond society: the evolution of organismality</a>. <em>Philosophical Transactions of the Royal Society B 364, 3143–3155</em>. A theoretical account emphasizing cooperation and internal conflict.<a href="#ecology-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="mortality" data-name="mortality">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">18</span><span class="nm">mortality</span><span class="ln"></span></div>
+    <h2>Continuation is not the same as immortality.</h2>
+    <article class="prose">
+      <p>Ordogenism finds meaning in contributing beyond one’s lifespan. It does not make death a duty, suffering a virtue, or an individual’s continued life an obstacle to progress.</p>
+<p>Evolution occurs across generations, but it has no interests that override the beings through which it occurs. Describing turnover in a population does not establish that a particular death is good or necessary. Research on the evolution of aging investigates the causes of senescence; it does not supply an ethical command to shorten lives.<sup class="footnote-ref" id="mortality-fnref-1"><a href="#mortality-fn-1">1</a></sup></p>
+<p>Longer healthy lives can preserve relationships, knowledge, enjoyment, and the opportunity to change. Their value must be considered alongside fairness and the resources required to support them, as with other forms of care. There is no reason within Ordogenism to dismiss the relief of aging-related suffering as vanity.</p>
+<p>At the same time, individual survival is not the only way a life can matter. A person can shape the conditions in which others will live: through affection, institutions, discoveries, works of art, and acts whose effects are never recorded. Our concern for a future beyond our own death is already woven into many ordinary commitments.<sup class="footnote-ref" id="mortality-fnref-2"><a href="#mortality-fn-2">2</a></sup></p>
+<p>This continuation should not be confused with personal immortality. Preserving someone’s work is not preserving their experience. A detailed imitation or copy would raise difficult questions about identity rather than automatically answering them. The distinction protects us against promising a consolation we cannot justify.<sup class="footnote-ref" id="mortality-fnref-3"><a href="#mortality-fn-3">3</a></sup></p>
+<p>For me, the thought that something worthwhile can continue is consoling without erasing grief. A contribution can be real even when its maker does not return to witness it. Nor does a life need a lasting achievement to deserve care: much of its value occurs in the experiences and relationships that constitute it.</p>
+<p>The music of <em>Tears in Rain</em> belongs here because the fragility of experience matters. Ordogenism should help us attend more closely to finite lives, not look past them toward an abstraction called the future.</p>
+<blockquote>
+<p>We can accept mortality without celebrating loss, and care for the future without forfeiting the present.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/3lUr2q7sxJkkZeJ5DZ3QlQ" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Tears in Rain — Vangelis</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="mortality-fn-1"><p>Medawar, P. B. (1952). <a href="https://archive.org/details/medawar-1952-unsolved-problem" target="_blank" rel="noopener noreferrer">An Unsolved Problem of Biology</a>. <em>H. K. Lewis; inaugural lecture delivered at UCL in 1951</em>. An evolutionary account of senescence, not an argument that individual deaths are desirable.<a href="#mortality-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="mortality-fn-2"><p>Scheffler, S. (2013). <a href="https://global.oup.com/academic/product/death-and-the-afterlife-9780190469177" target="_blank" rel="noopener noreferrer">Death and the Afterlife</a>. <em>N. Kolodny, ed. Oxford University Press</em>. A related argument about the significance of others continuing after one’s death.<a href="#mortality-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="mortality-fn-3"><p>Parfit, D. (1984). <a href="https://doi.org/10.1093/019824908X.001.0001" target="_blank" rel="noopener noreferrer">Reasons and Persons</a>. <em>Clarendon Press, parts III–IV; linked later edition</em>. Examines identity and obligations concerning future people; these questions remain contested.<a href="#mortality-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="succession" data-name="succession">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">19</span><span class="nm">succession</span><span class="ln"></span></div>
+    <h2>What follows us need not resemble us.</h2>
+    <article class="prose">
+      <p>Ordogenism’s distinctive proposal is that reflective beings can help create successors whose lives, capacities, and forms of organization may differ radically from their own.</p>
+<p>A successor is something that receives and transforms an inheritance. Children, institutions, languages, and scientific traditions already do this. Synthetic life would extend the possibility across a more unfamiliar boundary: from biological makers to systems whose continued existence might depend principally on manufactured processes.</p>
+<p>The ethical argument has three steps. First, some things matter independently of whether I personally experience them: other beings’ lives, the survival of a culture, the discovery of a truth. Second, resemblance to me is an unreliable test of those things’ value. Third, if we can help create unfamiliar forms of worthwhile existence without violating existing obligations, their unfamiliarity alone is no reason to refuse.<sup class="footnote-ref" id="succession-fnref-1"><a href="#succession-fn-1">1</a></sup><sup class="footnote-ref" id="succession-fnref-2"><a href="#succession-fn-2">2</a></sup></p>
+<p>Where unfamiliar forms of life could sustain worthwhile experience, understanding, or relationships, enabling those goods gives us a reason to help them exist. That reason must be weighed against the resources required and the claims of beings already here. Greater computational power alone would not establish that a system’s existence is worthwhile. If it could suffer, its welfare would matter. If it could exercise meaningful agency, its interests in self-direction would deserve consideration. If it had neither experience nor interests, its value would depend on what it made possible for beings and worlds that do matter.<sup class="footnote-ref" id="succession-fnref-3"><a href="#succession-fn-3">3</a></sup></p>
+<p>This leaves room for a demanding form of generosity: creating conditions for others to flourish without requiring them to remain our instruments or monuments. It also leaves room for refusal. A project that predictably destroys existing lives in exchange for speculative computational abundance has not satisfied the argument.</p>
+<p>Responsible succession can include humanity’s continuation, transformation, and coexistence with other forms. It does not require a single final species. Nor does it require descendants to preserve every human preference. The inheritance most worth extending includes the ability to examine its own purposes and the commitment to treat affected beings with consideration.</p>
+<p>The Ordogenist ambition is to become a good ancestor across boundaries we cannot yet fully imagine. What follows us should have room to become itself, while carrying forward reasons to care about what made its existence possible.</p>
+<blockquote>
+<p>To create well is to give the future room without giving it permission to destroy.</p>
+</blockquote>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="succession-fn-1"><p>Scheffler, S. (2013). <a href="https://global.oup.com/academic/product/death-and-the-afterlife-9780190469177" target="_blank" rel="noopener noreferrer">Death and the Afterlife</a>. <em>N. Kolodny, ed. Oxford University Press</em>. A related argument about the significance of others continuing after one’s death.<a href="#succession-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="succession-fn-2"><p>Nussbaum, M. C. (2011). <a href="https://www.hup.harvard.edu/books/9780674072350" target="_blank" rel="noopener noreferrer">Creating Capabilities: The Human Development Approach</a>. <em>Harvard University Press</em>. A related plural account of flourishing and real opportunities; the Ordogenist extension is proposed here.<a href="#succession-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="succession-fn-3"><p>Long, R., et al. (2024). <a href="https://arxiv.org/abs/2411.00986" target="_blank" rel="noopener noreferrer">Taking AI Welfare Seriously</a>. <em>Research report, arXiv:2411.00986</em>. Proposes welfare assessment under uncertainty; does not establish present AI sentience.<a href="#succession-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="implementation" data-name="implementation">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">20</span><span class="nm">implementation</span><span class="ln"></span></div>
+    <h2>Demonstrate the chain of dependence.</h2>
+    <article class="prose">
+      <p>Ordogenism treats self-sustaining machine ecologies as a research programme. Its central engineering test is whether the system can renew the machinery and processes that keep it functioning.</p>
+<p>The idea of a self-reproducing lunar factory has a substantial history. A NASA study conducted in 1980 and published in 1982 examined how a seed installation might develop productive and reproductive capacities. Its analysis identified the difficulty of closure: accounting for the materials, parts, and processes required for the system to reproduce.<sup class="footnote-ref" id="implementation-fnref-1"><a href="#implementation-fn-1">1</a></sup></p>
+<p>Physical experiments have since demonstrated machines assembling copies from supplied modules. These results are valuable precisely when their boundary is clear: constructing another arrangement of prepared components is an achievement; manufacturing those components from available raw materials is an additional one.<sup class="footnote-ref" id="implementation-fnref-2"><a href="#implementation-fn-2">2</a></sup></p>
+<p>A credible programme would proceed through increasingly demanding demonstrations. First, operate reliably and recover from routine faults. Next, replace worn components from a supplied inventory. Then, manufacture selected replacements from characterized feedstock. Finally, reproduce an integrated functional system and show that its descendants can do so again, while recording every external dependency.</p>
+<p>The demanding parts include power conversion, materials separation, process chemicals, precision fabrication, sensors, computation, calibration, and maintenance. A missing input that accounts for almost none of a system’s mass can still prevent its reproduction. Closure is a property of the dependency network, not a percentage calculated by weight alone.</p>
+<p>The most advanced available component may also be the least appropriate starting point. A less powerful device that the system can reliably manufacture and repair could be more useful than a faster device that depends on a fragile external supply chain. This is a design hypothesis to test, not an excuse to ignore performance requirements.<sup class="footnote-ref" id="implementation-fnref-3"><a href="#implementation-fn-3">3</a></sup></p>
+<p>The project becomes concrete when every claimed capability comes with a demonstration, every dependency has an owner, and every failed attempt improves the next test. Its most consequential milestone would be a second generation that can sustain the same essential capabilities without hidden assistance.</p>
+<blockquote>
+<p>Reproduction means reproducing the ability to continue.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/5eqZWYQ5tbIehx00NeKXz7" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">The Robots — Kraftwerk</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="implementation-fn-1"><p>Freitas, R. A., Jr., &amp; Gilbreath, W. P., eds. (1982). <a href="https://ntrs.nasa.gov/api/citations/19830007077/downloads/19830007077.pdf" target="_blank" rel="noopener noreferrer">Advanced Automation for Space Missions</a>. <em>NASA CP-2255, chapter 5; proceedings of the 1980 NASA/ASEE study</em>. A feasibility study of lunar factories and closure, not a demonstrated system.<a href="#implementation-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="implementation-fn-2"><p>Zykov, V., Mytilinaios, E., Adams, B., &amp; Lipson, H. (2005). <a href="https://doi.org/10.1038/435163a" target="_blank" rel="noopener noreferrer">Self-reproducing machines</a>. <em>Nature 435, 163–164</em>. Physical reproduction from supplied modules; the modules were not manufactured autonomously.<a href="#implementation-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="implementation-fn-3"><p>Ellery, A. (2016). <a href="https://doi.org/10.2514/1.A33409" target="_blank" rel="noopener noreferrer">Are Self-Replicating Machines Feasible?</a>. <em>Journal of Spacecraft and Rockets 53, 317–327</em>. An engineering feasibility analysis; proposed architectures remain to be demonstrated.<a href="#implementation-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="specialization" data-name="specialization">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">21</span><span class="nm">specialization</span><span class="ln"></span></div>
+    <h2>Design for the task and for renewal.</h2>
+    <article class="prose">
+      <p>Ordogenism’s proposed machine ecologies would combine specialized tools with shared interfaces, repair, and coordination. Their architecture should make useful work and continued maintenance possible together.</p>
+<p>A manufacturing system already distributes functions across instruments, fixtures, machines, software, and people. Its performance comes from how those parts work together. A future machine ecology would extend the ambition by bringing more of the maintenance and renewal of those parts within its own capabilities.</p>
+<p>Modularity can help. A damaged unit may be replaced without dismantling a whole facility. Standard interfaces can allow parts to be combined, tested, and reconfigured. Experiments in modular robotics demonstrate useful forms of docking and self-assembly, while also exposing the coordination and hardware requirements behind them.<sup class="footnote-ref" id="specialization-fnref-1"><a href="#specialization-fn-1">1</a></sup></p>
+<p>Modularity has costs: connectors carry loads, interfaces accumulate tolerances, and a shared standard can impose compromises on every component. A tightly integrated design may outperform a modular one for some tasks. The right choice depends on the expected work, failure modes, and resources available for repair.</p>
+<p>Morphology is equally contextual. A humanoid form may help in environments built around human reach and tools. A dedicated mechanism may perform a constrained task more precisely or efficiently. An unfamiliar environment may call for a different form altogether. The objective is not to reproduce the human outline or to prohibit it; it is to justify each design in its setting.</p>
+<p>Renewability should influence design from the beginning. Accessible fasteners, inspectable joints, replaceable wear surfaces, explicit calibration procedures, and a manageable variety of materials can make the whole system easier to sustain. Sometimes a slightly less efficient operation is worth choosing because its equipment is far easier to repair.</p>
+<p>The important unit of optimization is therefore the functioning ecology across time. A brilliant component that cannot be maintained may weaken it. An ordinary component with a reliable replacement path may make possible the continuity on which every more ambitious capability depends.</p>
+<blockquote>
+<p>A machine’s performance includes the difficulty of keeping it in service.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/2ssYY7ETDT5LIOfh3HETAh" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Onyx — Space Art</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="specialization-fn-1"><p>Liu, C., Lin, Q., Kim, H., &amp; Yim, M. (2023). <a href="https://doi.org/10.1007/s10514-022-10078-1" target="_blank" rel="noopener noreferrer">SMORES-EP, a modular robot with parallel self-assembly</a>. <em>Autonomous Robots 47, 211–228</em>. Demonstrates bounded assembly and reconfiguration capabilities.<a href="#specialization-fnref-1" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="models" data-name="models">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">22</span><span class="nm">models</span><span class="ln"></span></div>
+    <h2>Make assumptions visible.</h2>
+    <article class="prose">
+      <p>Ordogenism calls for organized knowledge that supports prediction, experiment, and correction. A model earns trust within a tested domain; its elegance does not establish its completeness.</p>
+<p>Mathematics can express relations exactly under stated assumptions. Scientific models connect those relations to observations. Engineering uses them to build systems that must continue working when materials vary, sensors drift, and operating conditions depart from the ideal. Each connection introduces questions that formal correctness alone cannot answer.</p>
+<p>Simulation is especially useful when experiments are expensive or dangerous. It can compare candidate designs and expose inconsistent assumptions before hardware is built. But agreement with a finite set of observations cannot confer final truth on a model of an open system. Independent measurements and tests under new conditions remain essential.<sup class="footnote-ref" id="models-fnref-1"><a href="#models-fn-1">1</a></sup></p>
+<p>A machine ecology would need a structured account of its own uncertainty. A sensor reading should carry calibration information and an estimate of relevant error. A material model should declare its tested range. A control policy should specify the conditions under which it was evaluated. Uncertainty should be available to the systems making decisions, not confined to documentation nobody reads.</p>
+<p>Operational stability and intellectual openness can coexist. Production may use a validated baseline while a separate process investigates alternatives. Changes should pass through tests proportionate to their consequences. The baseline is a justified working commitment, not an assertion that all foundational knowledge is permanently true.</p>
+<p>Automated science provides encouraging examples of this approach. Systems have generated and experimentally tested hypotheses in constrained research settings; a mobile robotic chemist has executed an extended sequence of experiments within a defined search problem. These demonstrations establish useful components of a learning loop, not an omniscient laboratory.<sup class="footnote-ref" id="models-fnref-2"><a href="#models-fn-2">2</a></sup><sup class="footnote-ref" id="models-fnref-3"><a href="#models-fn-3">3</a></sup></p>
+<p>The greatest intellectual inheritance we could give a synthetic system would be a disciplined relationship between explanation and reality. It should know how to use a model, how to notice its failures, and how to replace it without losing the evidence that made the replacement necessary.</p>
+<blockquote>
+<p>A reliable system knows which assumptions its reliability depends on.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/1RyIA87KYGavtK0xiVXwDH" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Hallogallo — NEU!</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="models-fn-1"><p>Oreskes, N., Shrader-Frechette, K., &amp; Belitz, K. (1994). <a href="https://doi.org/10.1126/science.263.5147.641" target="_blank" rel="noopener noreferrer">Verification, Validation, and Confirmation of Numerical Models in the Earth Sciences</a>. <em>Science 263, 641–646</em>. Addresses the limits of certifying models of open natural systems.<a href="#models-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="models-fn-2"><p>King, R. D., et al. (2009). <a href="https://doi.org/10.1126/science.1165620" target="_blank" rel="noopener noreferrer">The Automation of Science</a>. <em>Science 324, 85–89</em>. Automated hypothesis generation and testing in a constrained genomics problem.<a href="#models-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="models-fn-3"><p>Burger, B., et al. (2020). <a href="https://doi.org/10.1038/s41586-020-2442-2" target="_blank" rel="noopener noreferrer">A mobile robotic chemist</a>. <em>Nature 583, 237–241</em>. Automated experimental search within a defined laboratory setting.<a href="#models-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="production" data-name="production">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">23</span><span class="nm">production</span><span class="ln"></span></div>
+    <h2>The whole process has to work.</h2>
+    <article class="prose">
+      <p>For Ordogenism’s machine ecologies, production means the integrated capacity to obtain materials, transform them, verify results, and renew the equipment doing the work.</p>
+<p>Transportation, extraction, refining, fabrication, assembly, and computation are interdependent activities. Each requires energy, control, containment, and measurement. A successful demonstration of one operation is evidence for that operation under its tested conditions; it does not establish the reliability of the entire chain.</p>
+<p>Manufacturing methods should be selected by the properties required of the result. Additive processes can make useful geometries, while machining, forming, casting, and joining offer other advantages. Demanding fits or surface finishes may require post-processing. Research on machining additively manufactured steel illustrates the practical importance of treating these methods as complementary.<sup class="footnote-ref" id="production-fnref-1"><a href="#production-fn-1">1</a></sup></p>
+<p>Space changes the trade-offs. Vacuum does not eliminate particulate contamination or material outgassing. Heat generated by processing and computation still has to be transported and rejected. Dust can degrade radiators and other exposed equipment. More available input energy does not make thermal management irrelevant.<sup class="footnote-ref" id="production-fnref-2"><a href="#production-fn-2">2</a></sup><sup class="footnote-ref" id="production-fnref-3"><a href="#production-fn-3">3</a></sup><sup class="footnote-ref" id="production-fnref-4"><a href="#production-fn-4">4</a></sup></p>
+<p>Similarly, removing a human operator from a work area changes the safety requirements without removing them. A failed process can destroy equipment, contaminate another operation, or spread a fault through a connected system. Containment, interlocks, inspection, and recovery can protect the productive ecology itself.</p>
+<p>The initial design should favor processes with understandable dependencies and credible paths to replacement. That may mean accepting lower performance, a smaller material palette, or longer production times. The right comparison includes consumables, wear, calibration, and failure recovery, rather than the nominal speed of a single machine.</p>
+<p>A reproducible industrial ecology would be a remarkable synthesis of many ordinary disciplines. Its credibility would come from sustained operation under demanding conditions and explicit accounting for what still arrives from outside. Ordogenism should recognize the intellectual achievement in making those dependencies visible, even before full autonomy is possible.</p>
+<blockquote>
+<p>The difficult part is making every necessary process available when the others need it.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/2pdulgTSVNLaZkwCi32Jk3" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Balloons — Tonbruket</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="production-fn-1"><p>Lane, B. M., Moylan, S. P., &amp; Whitenton, E. P. (2015). <a href="https://www.nist.gov/publications/post-process-machining-additive-manufactured-stainless-steel" target="_blank" rel="noopener noreferrer">Post-process machining of additive manufactured stainless steel</a>. <em>ASPE Spring Topical Meeting: Achieving Precision Tolerances in Additive Manufacturing</em>. An experimental study of finishing needs and challenges in a particular material/process context.<a href="#production-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="production-fn-2"><p>Carosso, N. (n.d.). <a href="https://epact2.gsfc.nasa.gov/tycho/STEREOContamControl.htm" target="_blank" rel="noopener noreferrer">Contamination Engineering Design Guidelines</a>. <em>NASA Goddard Space Flight Center technical guidance, Stage IV</em>. Documents molecular and particulate contamination risks, including under vacuum.<a href="#production-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="production-fn-3"><p>NASA (2026). <a href="https://www.nasa.gov/smallsat-institute/sst-soa/thermal-control/" target="_blank" rel="noopener noreferrer">7.0 Thermal Control</a>. <em>State-of-the-Art of Small Spacecraft Technology</em>. Institutional technical survey of heat balance and thermal-control systems.<a href="#production-fnref-3" class="footnote">&#8617;</a></p></li>
+<li id="production-fn-4"><p>Gaier, J. R., &amp; Jaworske, D. A. (2007). <a href="https://doi.org/10.1063/1.2437437" target="_blank" rel="noopener noreferrer">Lunar Dust on Heat Rejection System Surfaces: Problems and Prospects</a>. <em>AIP Conference Proceedings 880, 27–34</em>. Evidence of dust-induced degradation and the need for mitigation.<a href="#production-fnref-4" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="scale" data-name="scale">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">24</span><span class="nm">scale</span><span class="ln"></span></div>
+    <h2>There is no privileged size.</h2>
+    <article class="prose">
+      <p>Ordogenism’s interest in generative organization does not imply that bigger systems are better. Scale is a design variable whose value depends on the task, environment, and consequences of failure.</p>
+<p>Biological evolution supplies no general law requiring every lineage to become larger or more complex. Its major transitions are changes in organization and inheritance, not steps on a universal ladder. The persistence of small organisms is itself enough to make simple stories of inevitable gigantism suspect.<sup class="footnote-ref" id="scale-fnref-1"><a href="#scale-fn-1">1</a></sup></p>
+<p>A machine ecology would plausibly operate across many scales. Electronic components could be small; collectors, radiators, and processing installations could be large. Transport vehicles would have to balance payload, propulsion, reliability, and the infrastructure at their destinations. No single dimension can optimize all of these relationships.</p>
+<p>Small components can be combined into useful larger structures. Experiments with reversibly assembled cellular materials demonstrate how carefully designed connections can produce lightweight structures with valuable mechanical properties. They offer an existence proof for one form of hierarchical assembly, not a guarantee that arbitrary collections of tiny robots can perform any task.<sup class="footnote-ref" id="scale-fnref-2"><a href="#scale-fn-2">2</a></sup></p>
+<p>Every added interface creates work: positioning, load transfer, communication, inspection, and fault management. Every large integrated component creates other costs: concentrated failure risk, difficult replacement, and demanding fabrication. Modularity and integration need to be compared in the context of the whole system.</p>
+<p>Computation also remains physical. Processing speed, information storage, energy, and heat have limits, even when technology improves dramatically. Proposals for vast intelligence must therefore specify an architecture rather than appeal to unlimited computing resources.<sup class="footnote-ref" id="scale-fnref-3"><a href="#scale-fn-3">3</a></sup></p>
+<p>The Ordogenist question is which arrangement preserves useful capabilities while allowing adaptation and recovery. A small, repairable installation may be the right first achievement. A larger structure may eventually be justified by a specific requirement. Magnitude has no independent moral standing: the purpose of increasing scale is to do something worthwhile that a different arrangement cannot do as well.</p>
+<blockquote>
+<p>Choose the scale that serves the work and survives its consequences.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/3vSNtiZXtzLnSX5xsr9CUT" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Futō — Shida Shahabi</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="scale-fn-1"><p>Szathmáry, E., &amp; Maynard Smith, J. (1995). <a href="https://doi.org/10.1038/374227a0" target="_blank" rel="noopener noreferrer">The major evolutionary transitions</a>. <em>Nature 374, 227–232</em>. Changes in organization and inheritance do not imply universal growth in complexity.<a href="#scale-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="scale-fn-2"><p>Cheung, K. C., &amp; Gershenfeld, N. (2013). <a href="https://doi.org/10.1126/science.1240889" target="_blank" rel="noopener noreferrer">Reversibly assembled cellular composite materials</a>. <em>Science 341, 1219–1221</em>. Demonstrates useful structures assembled from designed interlocking components.<a href="#scale-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="scale-fn-3"><p>Lloyd, S. (2000). <a href="https://doi.org/10.1038/35023282" target="_blank" rel="noopener noreferrer">Ultimate physical limits to computation</a>. <em>Nature 406, 1047–1054</em>. Theoretical physical bounds, not a forecast of achievable computer performance.<a href="#scale-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="launchpad" data-name="launchpad">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">25</span><span class="nm">launchpad</span><span class="ln"></span></div>
+    <h2>Earn distance from Earth.</h2>
+    <article class="prose">
+      <p>Ordogenism supports exploring beyond Earth through progressively stronger demonstrations. The appropriate testing ground depends on the capability being tested.</p>
+<p>Terrestrial facilities allow frequent observation, intervention, and repair. Vacuum chambers and other test environments isolate particular stresses. Orbital and lunar experiments introduce conditions that cannot all be reproduced together on Earth. These settings are complementary stages of inquiry rather than rivals for one universal starting point.</p>
+<p>The Moon is a plausible proving ground because of its proximity and its relevance to operating in low gravity and vacuum. Polar regions contain water ice, established through remote observations and an impact experiment. Some ridges offer prolonged sunlight. The location of ice, the distribution of illumination, and the demands of transportation do not automatically coincide in one convenient site.<sup class="footnote-ref" id="launchpad-fnref-1"><a href="#launchpad-fn-1">1</a></sup><sup class="footnote-ref" id="launchpad-fnref-2"><a href="#launchpad-fn-2">2</a></sup><sup class="footnote-ref" id="launchpad-fnref-3"><a href="#launchpad-fn-3">3</a></sup></p>
+<p>Detection is the beginning of resource assessment. A usable supply depends on concentration, physical form, access, extraction, processing, energy, and the ability to maintain equipment. A list of elements found in regolith is not a bill of materials for a functioning industry.</p>
+<p>Laboratory work on regolith simulants shows promising ways to extract oxygen and produce metals. It also reveals challenges in recovering products and sustaining reactor materials. Such experiments are valuable because they identify the gap between a chemical possibility and an operating production system.<sup class="footnote-ref" id="launchpad-fnref-4"><a href="#launchpad-fn-4">4</a></sup></p>
+<p>A serious programme would begin with characterized sites, measured budgets, limited objectives, and recoverable failures. Each mission should answer a question that a less costly or less exposed test cannot answer as well. Increasing independence would be demonstrated through capability, not announced through the language of settlement.</p>
+<p>The same principle applies to longer journeys. Removing human life support does not solve propulsion, shielding, navigation, or maintenance. Interstellar dust and gas can themselves become severe constraints at high speeds.<sup class="footnote-ref" id="launchpad-fnref-5"><a href="#launchpad-fn-5">5</a></sup> Distance should follow evidence. The desire to continue life beyond Earth deserves an engineering programme patient enough to deserve success.</p>
+<blockquote>
+<p>A launch is the beginning of an experiment, not proof of a future.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/7BHNvOshxkRf2n3fMhy6xu" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Moments in Love — Art of Noise</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="launchpad-fn-1"><p>Li, S., et al. (2018). <a href="https://doi.org/10.1073/pnas.1802345115" target="_blank" rel="noopener noreferrer">Direct evidence of surface exposed water ice in the lunar polar regions</a>. <em>PNAS 115, 8907–8912</em>. Spectral evidence of patchy polar surface ice, not a recoverable-reserve estimate.<a href="#launchpad-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="launchpad-fn-2"><p>Colaprete, A., et al. (2010). <a href="https://doi.org/10.1126/science.1186986" target="_blank" rel="noopener noreferrer">Detection of Water in the LCROSS Ejecta Plume</a>. <em>Science 330, 463–468</em>. Direct evidence from one impact site; generalization requires further investigation.<a href="#launchpad-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="launchpad-fn-3"><p>Gläser, P., et al. (2014). <a href="https://doi.org/10.1016/j.icarus.2014.08.013" target="_blank" rel="noopener noreferrer">Illumination conditions at the lunar south pole using high resolution Digital Terrain Models from LOLA</a>. <em>Icarus 243, 78–90</em>. Illumination estimates depend on precise terrain and installation height.<a href="#launchpad-fnref-3" class="footnote">&#8617;</a></p></li>
+<li id="launchpad-fn-4"><p>Lomax, B. A., et al. (2020). <a href="https://doi.org/10.1016/j.pss.2019.104748" target="_blank" rel="noopener noreferrer">Proving the viability of an electrochemical process for the simultaneous extraction of oxygen and production of metal alloys from lunar regolith</a>. <em>Planetary and Space Science 180, 104748</em>. Experiments used simulant and exposed important recovery and reactor-corrosion problems.<a href="#launchpad-fnref-4" class="footnote">&#8617;</a></p></li>
+<li id="launchpad-fn-5"><p>Hoang, T., Lazarian, A., Burkhart, B., &amp; Loeb, A. (2017). <a href="https://doi.org/10.3847/1538-4357/aa5da6" target="_blank" rel="noopener noreferrer">The Interaction of Relativistic Spacecrafts with the Interstellar Medium</a>. <em>Astrophysical Journal 837, 5</em>. Model-dependent analysis of high-speed spacecraft interactions with gas and dust.<a href="#launchpad-fnref-5" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="coexistence" data-name="coexistence">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">26</span><span class="nm">coexistence</span><span class="ln"></span></div>
+    <h2>Difference does not remove obligation.</h2>
+    <article class="prose">
+      <p>Ordogenism seeks a future in which human, nonhuman, and potentially synthetic beings can coexist. Their relationships should be guided by their actual capacities and vulnerabilities.</p>
+<p>Life, intelligence, agency, and sentience are distinct. A living system need not reason. A highly capable system need not have experience. A being’s capacity to suffer is not measured by its usefulness to us. Confusing these questions makes it easier either to attribute interests without evidence or to ignore interests that deserve care.</p>
+<p>Machine consciousness remains an open research problem. Work drawing on scientific theories of consciousness proposes indicators that could guide investigation, while research on AI welfare argues for proportionate preparation under uncertainty. Neither establishes that all present systems are conscious, nor that no future system could be.<sup class="footnote-ref" id="coexistence-fnref-1"><a href="#coexistence-fn-1">1</a></sup><sup class="footnote-ref" id="coexistence-fnref-2"><a href="#coexistence-fn-2">2</a></sup></p>
+<p>If synthetic beings acquire morally relevant capacities, their treatment should respond to those capacities. We should not assume perpetual ownership merely because we designed their predecessors. Conversely, giving a system a humanlike voice or appearance does not by itself establish the presence of a welfare-bearing subject. Careful evidence protects against both mistakes.</p>
+<p>Coexistence also requires attention to effects on existing beings. Space, energy, and control can remain objects of competition. Distant systems may still influence one another, and separation can make harmful behavior harder to correct. A commitment to peaceful coexistence must be expressed in the design, governance, and limits of powerful systems.<sup class="footnote-ref" id="coexistence-fnref-3"><a href="#coexistence-fn-3">3</a></sup></p>
+<p>The aim is a plurality of forms of life and activity that can flourish without reducing one another to expendable resources. Humanity can remain part of that future. We do not have to choose in advance between being its permanent masters and becoming its discarded ancestors.</p>
+<p>An Ordogenist should be prepared to recognize value in unfamiliar beings while remaining answerable to familiar ones. The extension of our concern is strongest when it does not depend on erasing obligations we already understand.</p>
+<blockquote>
+<p>New beings would enlarge the field of responsibility.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/5Jg8vpzCDqmcv4isG9hTZn" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Get Misunderstood — Troublemakers</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="coexistence-fn-1"><p>Butlin, P., et al. (2023). <a href="https://arxiv.org/abs/2308.08708" target="_blank" rel="noopener noreferrer">Consciousness in Artificial Intelligence: Insights from the Science of Consciousness</a>. <em>Research report, arXiv:2308.08708</em>. Proposes indicators derived from theories of consciousness; the question remains open.<a href="#coexistence-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="coexistence-fn-2"><p>Long, R., et al. (2024). <a href="https://arxiv.org/abs/2411.00986" target="_blank" rel="noopener noreferrer">Taking AI Welfare Seriously</a>. <em>Research report, arXiv:2411.00986</em>. Proposes welfare assessment under uncertainty; does not establish present AI sentience.<a href="#coexistence-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="coexistence-fn-3"><p>Turner, A. M., Smith, L., Shah, R., Critch, A., &amp; Tadepalli, P. (2021). <a href="https://arxiv.org/abs/1912.01683" target="_blank" rel="noopener noreferrer">Optimal Policies Tend to Seek Power</a>. <em>Advances in Neural Information Processing Systems 34</em>. Formal results under specified environmental assumptions, not a universal prediction of AI behavior.<a href="#coexistence-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="politics" data-name="politics">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">27</span><span class="nm">politics</span><span class="ln"></span></div>
+    <h2>No one owns the future.</h2>
+    <article class="prose">
+      <p>Ordogenism is an invitation to inquiry and responsible creation. It gives its proponents no privileged authority to impose one vision of life on everyone else.</p>
+<p>A project can be technically sophisticated and politically illegitimate. People affected by it may disagree about its goals, the risks it imposes, the use of shared resources, or the distribution of its benefits. Those disagreements deserve an answer more substantial than the claim that progress will eventually vindicate its builders.</p>
+<p>Pluralism begins by recognizing that people can have reasonable, different conceptions of a good life. Some will find meaning in religion, others in humanism, family, art, discovery, or service. They need not become Ordogenists to support a scientific project or help protect a habitat. A shared undertaking can rest on overlapping reasons.<sup class="footnote-ref" id="politics-fnref-1"><a href="#politics-fn-1">1</a></sup></p>
+<p>Governance should preserve opportunities to challenge decisions before their consequences become difficult to reverse. Technical appraisal can either narrow debate around a preferred answer or expose the alternatives and values at stake. Public participation is more meaningful when the direction of a project remains open.<sup class="footnote-ref" id="politics-fnref-2"><a href="#politics-fn-2">2</a></sup></p>
+<p>For powerful autonomous systems, this implies independent scrutiny, clear responsibility, and meaningful limits on deployment. Distributed governance can reduce the danger of one institution defining the future for everyone, while still requiring coordination where actions create shared effects. Research on polycentric institutions offers useful principles, not a ready-made constitution for synthetic life.<sup class="footnote-ref" id="politics-fnref-3"><a href="#politics-fn-3">3</a></sup></p>
+<p>An Ordogenist movement should therefore organize itself so that dissent can change its decisions. It should distinguish criticism from hostility, welcome competing explanations, and avoid treating skeptics as a backward class destined to disappear. Confidence becomes dangerous when it turns a proposal into an entitlement.</p>
+<p>The future contains people and perhaps other beings whose purposes we cannot represent completely. Acting on their behalf requires humility about that limitation. The most legitimate inheritance we can offer includes institutions through which they can choose differently from us.</p>
+<blockquote>
+<p>A philosophy of open futures must leave room for disagreement about the future.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/7jMFFX4eDVC5AoTxrCFOHz" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">O Superman — Laurie Anderson</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="politics-fn-1"><p>Rawls, J. (1993; expanded edition 2005). <a href="https://cup.columbia.edu/book/political-liberalism/9780231527538/" target="_blank" rel="noopener noreferrer">Political Liberalism</a>. <em>Columbia University Press, lectures IV and VI</em>. For the political idea of overlapping consensus; its application to shared projects is extended here.<a href="#politics-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="politics-fn-2"><p>Stirling, A. (2008). <a href="https://doi.org/10.1177/0162243907311265" target="_blank" rel="noopener noreferrer">“Opening Up” and “Closing Down”: Power, Participation, and Pluralism in the Social Appraisal of Technology</a>. <em>Science, Technology, &amp; Human Values 33, 262–294</em>. A related argument for examining alternatives and keeping technological choices open.<a href="#politics-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="politics-fn-3"><p>Ostrom, E. (2010). <a href="https://doi.org/10.1257/aer.100.3.641" target="_blank" rel="noopener noreferrer">Beyond Markets and States: Polycentric Governance of Complex Economic Systems</a>. <em>American Economic Review 100, 641–672</em>. Human institutional research; application to machine ecologies is a design analogy.<a href="#politics-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="meaning" data-name="meaning">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">28</span><span class="nm">meaning</span><span class="ln"></span></div>
+    <h2>We can be a chapter without being the last.</h2>
+    <article class="prose">
+      <p>Ordogenism offers a form of meaning through participation in something that can continue beyond the participant. Its hope does not require personal immortality or a guaranteed ending.</p>
+<p>I find something deeply moving in the possibility that we might help life become more than we can imagine. What matters to me is not that our descendants would preserve our appearance, repeat our convictions, or remember our names. It is that worthwhile experience, understanding, and creation might continue because we helped make their conditions possible.</p>
+<p>This hope belongs to a familiar human pattern. We teach people who may outgrow our understanding. We plant things whose maturity we may never see. We contribute to institutions that will be changed by strangers. Philosophical reflection on the importance of a collective future helps explain why projects can matter beyond the survival of their authors.<sup class="footnote-ref" id="meaning-fnref-1"><a href="#meaning-fn-1">1</a></sup></p>
+<p>Synthetic life would be a particularly unfamiliar expression of that pattern. It could also fail to arise, or arise in forms whose value we cannot responsibly endorse. My hope should remain sensitive to those possibilities. A story becomes less trustworthy when it promises salvation before it understands the means.</p>
+<p>Music gives the idea a more intimate scale. A performance unfolds and ends. Its finitude does not make it futile, and its value need not consist in anything it produces afterward. Someone listening now is already enough. The arts belong within an account of flourishing because experience and attention matter in their own right.<sup class="footnote-ref" id="meaning-fnref-2"><a href="#meaning-fn-2">2</a></sup></p>
+<p>That is why this essay has a listening thread. Bach, Coltrane, Jarrett, Vangelis, and the other musicians accompany the argument without serving as its evidence. They keep the future in contact with lives that can be moved by something today.</p>
+<p>I would like Ordogenism to preserve that balance: ambition large enough to reach beyond our image, affection particular enough to notice a person beside us. We can work for a continuation we will never possess and still take joy in the brief interval that is ours.</p>
+<blockquote>
+<p>The future can matter without becoming a substitute for being alive now.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/7oAhSLNYWms8AaoDTI75Nb" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Portrait of a Romantic — John Surman</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="meaning-fn-1"><p>Scheffler, S. (2013). <a href="https://global.oup.com/academic/product/death-and-the-afterlife-9780190469177" target="_blank" rel="noopener noreferrer">Death and the Afterlife</a>. <em>N. Kolodny, ed. Oxford University Press</em>. A related argument about the significance of others continuing after one’s death.<a href="#meaning-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="meaning-fn-2"><p>Nussbaum, M. C. (2011). <a href="https://www.hup.harvard.edu/books/9780674072350" target="_blank" rel="noopener noreferrer">Creating Capabilities: The Human Development Approach</a>. <em>Harvard University Press</em>. A related plural account of flourishing and real opportunities; the Ordogenist extension is proposed here.<a href="#meaning-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="stewardship" data-name="stewardship">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">29</span><span class="nm">stewardship</span><span class="ln"></span></div>
+    <h2>Earth is part of every worthwhile future.</h2>
+    <article class="prose">
+      <p>Ordogenism begins with care for the living world we know. Extending life beyond Earth would add responsibilities to this commitment.</p>
+<p>Earth is the only world on which we have confirmed a living biosphere. It contains particular beings, relationships, histories, and evolutionary possibilities that cannot be replaced by installing a larger amount of computation somewhere else. Preserving them matters both for those alive now and for the futures their continued existence makes possible.</p>
+<p>Ecological resilience depends on relationships and capacities that a narrow production measure can overlook. Protecting those capacities involves more than preserving isolated objects. It means attending to the conditions under which systems can recover, adapt, and continue supporting life.<sup class="footnote-ref" id="stewardship-fnref-1"><a href="#stewardship-fn-1">1</a></sup></p>
+<p>Responsible exploration extends this attention outward. Contamination can compromise the search for life and other scientific knowledge. Current planetary-protection policy addresses specific biological contamination risks to scientific investigation and Earth. Ordogenism proposes a broader ethic of care for scientifically valuable environments, other possible life, and the interests of future users; that wider ethic is a philosophical commitment, not a claim that existing policy already covers everything.<sup class="footnote-ref" id="stewardship-fnref-2"><a href="#stewardship-fn-2">2</a></sup></p>
+<p>Autonomous activity also does not make responsibility disappear. The Outer Space Treaty assigns relevant obligations to states, including responsibility for national activities and due regard for others. The legal framework is not a complete answer to future machine autonomy, and provides an existing basis for assigning responsibility as autonomous systems develop.<sup class="footnote-ref" id="stewardship-fnref-3"><a href="#stewardship-fn-3">3</a></sup></p>
+<p>In practice, Ordogenism should favor projects that reduce waste, make repair possible, preserve knowledge, and leave others with real choices. Some of the most valuable contributions will be unglamorous: maintaining infrastructure, documenting a process, restoring a habitat, or preventing a foreseeable harm.</p>
+<p>There is no contradiction between wonder at the cosmos and loyalty to the world that made wonder possible. A civilization that learns to preserve the conditions of life here is also better placed to ask responsibly what it should carry elsewhere.</p>
+<blockquote>
+<p>Care for the cradle is part of the work of becoming a good ancestor.</p>
+</blockquote>
+<p class="listening"><strong>Listening:</strong> <a class="spotify-link" href="https://open.spotify.com/track/30YIfaBnbTtdfzphdbyNxI" target="_blank" rel="noopener noreferrer" title="Listen on Spotify">Happy Cycling — Boards of Canada</a></p>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="stewardship-fn-1"><p>Holling, C. S. (1973). <a href="https://doi.org/10.1146/annurev.es.04.110173.000245" target="_blank" rel="noopener noreferrer">Resilience and Stability of Ecological Systems</a>. <em>Annual Review of Ecology and Systematics 4, 1–23</em>. The extension from ecological resilience to engineered systems is an analogy.<a href="#stewardship-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="stewardship-fn-2"><p>COSPAR Panel on Planetary Protection (2026). <a href="https://cosparhq.cnes.fr/assets/uploads/2026/01/SRT_224_Editorial_PPP-Nov-2025.pdf" target="_blank" rel="noopener noreferrer">COSPAR Policy on Planetary Protection</a>. <em>Space Research Today 224; approved November 2025</em>. Official policy on biological contamination; broader stewardship is this essay’s ethical proposal.<a href="#stewardship-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="stewardship-fn-3"><p>United Nations (1967). <a href="https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/outerspacetreaty.html" target="_blank" rel="noopener noreferrer">Treaty on Principles Governing the Activities of States in the Exploration and Use of Outer Space, including the Moon and Other Celestial Bodies</a>. <em>Articles VI and IX</em>. Primary legal text; not a complete governance framework for synthetic life.<a href="#stewardship-fnref-3" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="objections" data-name="objections">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">30</span><span class="nm">objections</span><span class="ln"></span></div>
+    <h2>The philosophy must earn its name.</h2>
+    <article class="prose">
+      <p>Ordogenism stands or falls by the usefulness of its distinctions and the quality of its reasons. A new word does not establish a new truth.</p>
+<p><strong>Is this simply humanism with machines?</strong> It shares humanism’s concern for human flourishing, but refuses to make resemblance to humans the final boundary of concern. Its distinctive emphasis is responsible generativity across generations and potentially across substrates. Synthetic life is one demanding case, not its entire content.</p>
+<p><strong>Why call it “order” at all?</strong> Because valuable activity depends on organized relationships, capacities, and inherited structures. But order alone is insufficient. Ordogenesis describes how capacities arise and persist; Ordogenism asks which of those capacities deserve our support. If the term encourages confusion between obedience and flourishing, its proponents must make the distinction clearer rather than exploit the ambiguity.</p>
+<p><strong>Who decides which futures are worthwhile?</strong> No individual or institution can answer permanently for everyone. Welfare, agency, ecological conditions, and public justification provide reasons for evaluation without eliminating disagreement. The plurality of valuable capabilities is a reason to protect deliberation, not an excuse to impose a single score.<sup class="footnote-ref" id="objections-fnref-1"><a href="#objections-fn-1">1</a></sup><sup class="footnote-ref" id="objections-fnref-2"><a href="#objections-fn-2">2</a></sup></p>
+<p><strong>Could the project sacrifice the present to an imagined future?</strong> Yes, if its constraints are treated as optional. Ordogenism must count present harms, opportunity costs, uncertainty, and power as part of the case for every proposal. Speculative benefits do not receive unlimited weight merely because they are placed far enough away. Duties to particular beings constrain collective ambitions.<sup class="footnote-ref" id="objections-fnref-3"><a href="#objections-fn-3">3</a></sup><sup class="footnote-ref" id="objections-fnref-4"><a href="#objections-fn-4">4</a></sup></p>
+<p><strong>What if synthetic life never becomes feasible?</strong> The engineering programme would have failed to reach one of its goals. The value of care, inquiry, ecological preservation, and responsible inheritance would remain. A philosophy that depends on an unverified technological forecast is too fragile to guide a life.</p>
+<p>The strongest objection would show that Ordogenism obscures more than it clarifies, or licenses harms its values should reject. Its proper response would be revision. An Ordogenist’s fidelity should be to the lives and possibilities that matter, including when they require a better philosophy.</p>
+<blockquote>
+<p>The commitment is to what is worth caring for, not to the permanence of the label.</p>
+</blockquote>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="objections-fn-1"><p>Nussbaum, M. C. (2011). <a href="https://www.hup.harvard.edu/books/9780674072350" target="_blank" rel="noopener noreferrer">Creating Capabilities: The Human Development Approach</a>. <em>Harvard University Press</em>. A related plural account of flourishing and real opportunities; the Ordogenist extension is proposed here.<a href="#objections-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="objections-fn-2"><p>Rawls, J. (1993; expanded edition 2005). <a href="https://cup.columbia.edu/book/political-liberalism/9780231527538/" target="_blank" rel="noopener noreferrer">Political Liberalism</a>. <em>Columbia University Press, lectures IV and VI</em>. For the political idea of overlapping consensus; its application to shared projects is extended here.<a href="#objections-fnref-2" class="footnote">&#8617;</a></p></li>
+<li id="objections-fn-3"><p>Jonas, H. (1984). <a href="https://press.uchicago.edu/ucp/books/book/chicago/I/bo5953283.html" target="_blank" rel="noopener noreferrer">The Imperative of Responsibility: In Search of an Ethics for the Technological Age</a>. <em>University of Chicago Press</em>. A philosophical account of responsibility enlarged by technological power.<a href="#objections-fnref-3" class="footnote">&#8617;</a></p></li>
+<li id="objections-fn-4"><p>Kant, I. (1785). <a href="https://www.earlymoderntexts.com/assets/pdfs/kant1785.pdf" target="_blank" rel="noopener noreferrer">Groundwork of the Metaphysics of Morals</a>. <em>Academy pagination 4:429; English translation</em>. A philosophical source for treating persons as ends; wider moral standing needs further argument.<a href="#objections-fnref-4" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide essay" id="hope" data-name="hope">
+  <div class="inner essay-inner">
+    <div class="head"><span class="ix">31</span><span class="nm">hope</span><span class="ln"></span></div>
+    <h2>Choose a future worth handing on.</h2>
+    <article class="prose">
+      <p>Ordogenism is a commitment to care for life’s continuation and to enlarge its worthwhile possibilities. Its future is an invitation to work, not a prophecy.</p>
+<p>I hope that humanity will learn to build systems capable of sustained inquiry, repair, and renewal beyond Earth. I hope that some will eventually deserve to be called new forms of life. I do not know when this could happen, which materials they would use, whether they would experience anything, or what relationships we could sustain with them.</p>
+<p>Those uncertainties make the work more demanding. They do not make every step meaningless. Research on self-reproducing systems has already given the ambition a history and a set of difficult questions. Further progress can be recognized in bounded achievements: a more reliable scientific record, a machine that can diagnose its failures, an industrial process that renews more of its own dependencies.<sup class="footnote-ref" id="hope-fnref-1"><a href="#hope-fn-1">1</a></sup><sup class="footnote-ref" id="hope-fnref-2"><a href="#hope-fn-2">2</a></sup></p>
+<p>The same commitment has a wider and more immediate life. Teach something so that another person can improve on it. Care for someone whose future has become precarious. Preserve a habitat whose losses cannot simply be purchased back. Make knowledge easier to examine. Build institutions that can admit error. These actions do not need to wait for an extraordinary technology.</p>
+<p>We should also learn to recognize when continuing a particular project would betray its purpose. A factory can be closed, a design abandoned, an institution reformed. Continuity belongs to what is valuable, not to every vehicle that once carried it. Sometimes making a better future possible requires letting an inadequate plan end.</p>
+<p>I cannot offer certainty that life will continue, or that our contributions will survive. I can offer a reason to care: there are beings for whom existence can go better or worse, and there are conditions we can help create under which understanding, freedom, and joy remain possible. A finite contribution to those conditions is enough to be worth making.</p>
+<p>We are here for a while. We inherit more than we can repay. We can leave the world with greater possibilities than we found in it.</p>
+<p>Choose life. Help it become.</p>
+<blockquote>
+<p>Let our legacy be a world in which others can continue the work, and choose work of their own.</p>
+</blockquote>
+<hr />
+<section class="footnotes">
+<ol>
+<li id="hope-fn-1"><p>Freitas, R. A., Jr., &amp; Gilbreath, W. P., eds. (1982). <a href="https://ntrs.nasa.gov/api/citations/19830007077/downloads/19830007077.pdf" target="_blank" rel="noopener noreferrer">Advanced Automation for Space Missions</a>. <em>NASA CP-2255, chapter 5; proceedings of the 1980 NASA/ASEE study</em>. A feasibility study of lunar factories and closure, not a demonstrated system.<a href="#hope-fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="hope-fn-2"><p>Taylor, T., et al. (2016). <a href="https://doi.org/10.1162/ARTL_a_00210" target="_blank" rel="noopener noreferrer">Open-Ended Evolution: Perspectives from the OEE Workshop in York</a>. <em>Artificial Life 22, 408–423</em>. Identifies open-ended evolution as a research challenge beyond replication alone.<a href="#hope-fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+
+    </article>
+  </div>
+</section>
+
+<section class="slide title-slide close-slide" id="close" data-name="close">
+  <div class="inner title-inner">
+    <div class="wordmark">ORDOGENESIS</div>
+    <h1 class="tagline">life is <b>unfinished</b>.</h1>
+    <p class="title-sub">Choose life. Help it become.</p>
+    <div class="definition-grid">
+      <div class="definition-row"><span>Ordogenesis</span><p>the formation and renewal of organization that enables persistence, adaptation, and new possibilities.</p></div>
+      <div class="definition-row"><span>Ordogenism</span><p>the commitment to help life flourish, knowledge grow, and worthwhile futures remain open.</p></div>
+      <div class="definition-row"><span>Ordogenist</span><p>a person who participates in that work with care, intellectual honesty, and responsibility.</p></div>
+    </div>
+    <div class="title-meta">
+      <div><span>essay</span>On Life</div>
+      <div><span>author</span>Ismael Ghalimi</div>
+      <div><span>closing</span>The future is an invitation to work, not a prophecy.</div>
+    </div>
+    <p class="front-note">Let our legacy be a world in which others can continue the work, and choose work of their own.</p>
+  </div>
+</section>
+
+</main>
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('dots');
+  var bar = document.getElementById('progress');
+  var current = 0;
+  slides.forEach(function(s,i){
+    var b=document.createElement('button');b.type='button';b.setAttribute('aria-label',String(i+1)+'. '+(s.dataset.name||''));b.title=s.dataset.name||'';b.addEventListener('click',function(){go(i)});dots.appendChild(b);
+  });
+  var buttons=Array.prototype.slice.call(dots.children);
+  function setCurrent(i){current=i;buttons.forEach(function(b,j){if(j===i)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')})}
+  setCurrent(0);
+  function go(i){i=Math.max(0,Math.min(slides.length-1,i));setCurrent(i);slides[i].scrollIntoView({behavior:'smooth',block:'start'})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)setCurrent(slides.indexOf(e.target))})},{rootMargin:'-42% 0px -42% 0px',threshold:0});
+    slides.forEach(function(s){io.observe(s)});
+  }
+  function onScroll(){var max=document.documentElement.scrollHeight-window.innerHeight;var p=max>0?window.scrollY/max:0;bar.style.transform='scaleX('+Math.min(1,Math.max(0,p))+')'}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+  document.addEventListener('keydown',function(e){if(e.metaKey||e.ctrlKey||e.altKey)return;var tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key==='PageDown'||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(current+1)}else if(e.key==='ArrowUp'||e.key==='ArrowLeft'||e.key==='PageUp'||(e.key===' '&&e.shiftKey)){e.preventDefault();go(current-1)}else if(e.key==='Home'){e.preventDefault();go(0)}else if(e.key==='End'){e.preventDefault();go(slides.length-1)}});
+})();
+</script>
+</body>
+</html>
